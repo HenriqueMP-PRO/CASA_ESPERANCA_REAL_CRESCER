@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "about": "Nossa História",
+    "projects": "Projetos",
+    "founder": "Fundador",
+    "gallery": "Galeria",
+    "contact": "Contato",
+    "donate": "Doar"
+  },
+  "hero": {
+    "title": "Juntos podemos fazer a <1>diferença</1>!",
+    "subtitle": "A Casa Esperança Real Crescer acolhe refugiados e famílias carentes no Brasil e leva esperança às comunidades pigmeias no Congo desde 2010.",
+    "cta_donate": "Fazer uma doação",
+    "cta_learn": "Conheça nosso trabalho"
+  },
+  "stats": {
+    "years": "anos de missão",
+    "communities": "comunidades atendidas",
+    "countries": "países alcançados",
+    "since": "ONG fundada em"
+  },
+  "about": {
+    "tag": "Nossa História",
+    "title": "Uma missão que nasceu do acolhimento",
+    "p1": "Tudo começou com o Pastor Leonardo (Laza Ndosi), missionário desde 1998, que chegou ao Brasil em 2003. No Rio de Janeiro, encontrou comunidades de africanos em Brás de Pina, Caxias, Gramacho e no centro da cidade, e passou a auxiliar refugiados como intérprete nas Cáritas e na Polícia Federal, onde também foi professor de língua portuguesa por vários anos.",
+    "p2": "Em 2010, com a ajuda do amigo Pastor Marcos Fernandes, nasceu a Casa Esperança Real Crescer: uma ONG dedicada a ajudar a população carente das comunidades, acolher estrangeiros que chegam sem parentes e apoiar as aldeias dos pigmeus na África.",
+    "p3": "Distribuição de cestas básicas, dias de corte de cabelo e tranças gratuitos, apoio à saúde mental e atendimento odontológico gratuito são algumas das ações que realizamos até hoje.",
+    "badge_number": "2010",
+    "badge_label": "desde"
+  },
+  "projects": {
+    "tag": "Nossos Projetos",
+    "title": "O que fazemos",
+    "subtitle": "Do Rio de Janeiro às aldeias do Congo, nossos projetos levam dignidade, alimento e esperança.",
+    "items": {
+      "congo": {
+        "title": "Missão nas aldeias pigmeias",
+        "description": "Apoio às comunidades pigmeias no Congo com alimentos, materiais de construção e assistência às famílias das aldeias."
+      },
+      "housing": {
+        "title": "Moradia digna",
+        "description": "Entrega de telhas e materiais de construção para famílias reconstruírem suas casas com segurança."
+      },
+      "refugees": {
+        "title": "Acolhida a refugiados",
+        "description": "Acolhimento, interpretação, ensino de português e orientação para estrangeiros que chegam ao Brasil sem parentes."
+      },
+      "community": {
+        "title": "Ação social nas comunidades",
+        "description": "Distribuição de cestas básicas, cortes de cabelo e tranças gratuitos, saúde mental e atendimento odontológico em Brás de Pina."
+      }
+    }
+  },
+  "founder": {
+    "tag": "Conheça nosso fundador",
+    "title": "Pastor Leonardo",
+    "quote": "Com a ajuda de Deus, das pessoas de bom coração, das empresas e dos órgãos públicos, vamos continuar a nossa missão.",
+    "p1": "Laza Ndosi, conhecido como Pastor Leonardo, é missionário desde 1998, dedicado à obra de Deus e às obras sociais. Em 2009 iniciou a visão Betesda Internacional, uma igreja para acolher estrangeiros e ensinar a palavra de Deus.",
+    "p2": "Até hoje seguimos acolhendo pessoas, orientando-as e fazendo a obra social, com muitos projetos em curso no Brasil e na África."
+  },
+  "gallery": {
+    "tag": "Galeria",
+    "title": "Veja nosso trabalho em ação",
+    "subtitle": "Registros das nossas missões nas aldeias do Congo e das ações no Brasil."
+  },
+  "donate": {
+    "tag": "Doe agora",
+    "title": "Sua doação transforma vidas",
+    "p1": "Cada contribuição vira cesta básica, material de construção, acolhimento e esperança para quem mais precisa, no Brasil e no Congo.",
+    "features": {
+      "secure": "Pagamento 100% seguro processado pelo Stripe",
+      "international": "Aceitamos cartões de todo o mundo, em várias moedas",
+      "recurring": "Opção de doação mensal para apoiar continuamente",
+      "receipt": "Você recebe um recibo e um agradecimento por e-mail"
+    },
+    "card_title": "Escolha o valor da sua doação",
+    "frequency": "Frequência",
+    "once": "Única",
+    "monthly": "Mensal",
+    "currency": "Moeda",
+    "amount": "Valor",
+    "custom_placeholder": "Outro valor",
+    "button": "Doar {{amount}}",
+    "button_empty": "Doar",
+    "processing": "Processando...",
+    "secure_note": "Doação segura via Stripe — cartão de crédito e débito",
+    "error_generic": "Não foi possível iniciar a doação. Tente novamente em instantes.",
+    "error_amount": "Informe um valor válido para a doação."
+  },
+  "success": {
+    "title": "Muito obrigado!",
+    "message": "Sua doação foi recebida com sucesso. Que Deus abençoe sua generosidade! Você receberá um e-mail de confirmação em breve.",
+    "close": "Fechar"
+  },
+  "canceled": {
+    "title": "Doação não concluída",
+    "message": "Sua doação não foi finalizada. Se algo deu errado, você pode tentar novamente quando quiser.",
+    "close": "Fechar"
+  },
+  "contact": {
+    "tag": "Contato",
+    "title": "Fale conosco",
+    "address_title": "Endereço",
+    "phone_title": "Telefones",
+    "email_title": "E-mail",
+    "org_title": "Organização"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados.",
+    "tagline": "Juntos podemos fazer a diferença."
+  }
+}

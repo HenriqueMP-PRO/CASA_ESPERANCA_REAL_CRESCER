@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "about": "Notre Histoire",
+    "projects": "Projets",
+    "founder": "Fondateur",
+    "gallery": "Galerie",
+    "contact": "Contact",
+    "donate": "Faire un don"
+  },
+  "hero": {
+    "title": "Ensemble, nous pouvons faire la <1>différence</1> !",
+    "subtitle": "Casa Esperança Real Crescer accueille des réfugiés et des familles dans le besoin au Brésil et apporte de l'espoir aux communautés pygmées au Congo depuis 2010.",
+    "cta_donate": "Faire un don",
+    "cta_learn": "Découvrir notre travail"
+  },
+  "stats": {
+    "years": "années de mission",
+    "communities": "communautés aidées",
+    "countries": "pays touchés",
+    "since": "ONG fondée en"
+  },
+  "about": {
+    "tag": "Notre Histoire",
+    "title": "Une mission née de l'accueil",
+    "p1": "Tout a commencé avec le Pasteur Leonardo (Laza Ndosi), missionnaire depuis 1998, arrivé au Brésil en 2003. À Rio de Janeiro, il a rencontré des communautés africaines à Brás de Pina, Caxias, Gramacho et au centre-ville, et a commencé à aider les réfugiés comme interprète à la Caritas et à la Police Fédérale, où il a aussi enseigné le portugais pendant plusieurs années.",
+    "p2": "En 2010, avec l'aide de son ami le Pasteur Marcos Fernandes, est née Casa Esperança Real Crescer : une ONG dédiée à aider les personnes démunies des communautés, à accueillir les étrangers arrivés sans famille et à soutenir les villages pygmées en Afrique.",
+    "p3": "Distribution de paniers alimentaires, journées gratuites de coiffure et de tresses, soutien en santé mentale et soins dentaires gratuits font partie des actions que nous menons encore aujourd'hui.",
+    "badge_number": "2010",
+    "badge_label": "depuis"
+  },
+  "projects": {
+    "tag": "Nos Projets",
+    "title": "Ce que nous faisons",
+    "subtitle": "De Rio de Janeiro aux villages du Congo, nos projets apportent dignité, nourriture et espoir.",
+    "items": {
+      "congo": {
+        "title": "Mission dans les villages pygmées",
+        "description": "Soutien aux communautés pygmées au Congo avec de la nourriture, des matériaux de construction et une assistance aux familles des villages."
+      },
+      "housing": {
+        "title": "Un logement digne",
+        "description": "Distribution de tôles et de matériaux de construction pour que les familles puissent reconstruire leurs maisons en sécurité."
+      },
+      "refugees": {
+        "title": "Accueil des réfugiés",
+        "description": "Accueil, interprétation, cours de portugais et orientation pour les étrangers arrivant au Brésil sans famille."
+      },
+      "community": {
+        "title": "Action sociale communautaire",
+        "description": "Distribution de paniers alimentaires, coiffures et tresses gratuites, santé mentale et soins dentaires à Brás de Pina."
+      }
+    }
+  },
+  "founder": {
+    "tag": "Rencontrez notre fondateur",
+    "title": "Pasteur Leonardo",
+    "quote": "Avec l'aide de Dieu, des personnes de bon cœur, des entreprises et des institutions publiques, nous continuerons notre mission.",
+    "p1": "Laza Ndosi, connu sous le nom de Pasteur Leonardo, est missionnaire depuis 1998, dévoué à l'œuvre de Dieu et aux œuvres sociales. En 2009, il a lancé la vision Betesda International, une église pour accueillir les étrangers et enseigner la parole de Dieu.",
+    "p2": "Aujourd'hui encore, nous continuons à accueillir les personnes, à les orienter et à faire l'œuvre sociale, avec de nombreux projets en cours au Brésil et en Afrique."
+  },
+  "gallery": {
+    "tag": "Galerie",
+    "title": "Voyez notre travail en action",
+    "subtitle": "Images de nos missions dans les villages du Congo et de nos actions au Brésil."
+  },
+  "donate": {
+    "tag": "Faites un don",
+    "title": "Votre don transforme des vies",
+    "p1": "Chaque contribution devient nourriture, matériaux de construction, accueil et espoir pour ceux qui en ont le plus besoin, au Brésil et au Congo.",
+    "features": {
+      "secure": "Paiement 100 % sécurisé traité par Stripe",
+      "international": "Nous acceptons les cartes du monde entier, en plusieurs devises",
+      "recurring": "Option de don mensuel pour un soutien continu",
+      "receipt": "Vous recevez un reçu et un e-mail de remerciement"
+    },
+    "card_title": "Choisissez le montant de votre don",
+    "frequency": "Fréquence",
+    "once": "Unique",
+    "monthly": "Mensuel",
+    "currency": "Devise",
+    "amount": "Montant",
+    "custom_placeholder": "Autre montant",
+    "button": "Donner {{amount}}",
+    "button_empty": "Donner",
+    "processing": "Traitement...",
+    "secure_note": "Don sécurisé via Stripe — cartes de crédit et de débit",
+    "error_generic": "Impossible de démarrer votre don. Veuillez réessayer dans quelques instants.",
+    "error_amount": "Veuillez saisir un montant valide."
+  },
+  "success": {
+    "title": "Merci beaucoup !",
+    "message": "Votre don a bien été reçu. Que Dieu bénisse votre générosité ! Vous recevrez un e-mail de confirmation sous peu.",
+    "close": "Fermer"
+  },
+  "canceled": {
+    "title": "Don non finalisé",
+    "message": "Votre don n'a pas été finalisé. Si quelque chose s'est mal passé, vous pouvez réessayer à tout moment.",
+    "close": "Fermer"
+  },
+  "contact": {
+    "tag": "Contact",
+    "title": "Contactez-nous",
+    "address_title": "Adresse",
+    "phone_title": "Téléphones",
+    "email_title": "E-mail",
+    "org_title": "Organisation"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "tagline": "Ensemble, nous pouvons faire la différence."
+  }
+}

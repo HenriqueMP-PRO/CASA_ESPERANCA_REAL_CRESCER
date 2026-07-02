@@ -1,0 +1,112 @@
+{
+  "nav": {
+    "about": "Our Story",
+    "projects": "Projects",
+    "founder": "Founder",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "donate": "Donate"
+  },
+  "hero": {
+    "title": "Together we can make a <1>difference</1>!",
+    "subtitle": "Casa Esperança Real Crescer welcomes refugees and families in need in Brazil and brings hope to pygmy communities in Congo since 2010.",
+    "cta_donate": "Make a donation",
+    "cta_learn": "See our work"
+  },
+  "stats": {
+    "years": "years of mission",
+    "communities": "communities served",
+    "countries": "countries reached",
+    "since": "NGO founded in"
+  },
+  "about": {
+    "tag": "Our Story",
+    "title": "A mission born from welcoming others",
+    "p1": "It all began with Pastor Leonardo (Laza Ndosi), a missionary since 1998, who arrived in Brazil in 2003. In Rio de Janeiro, he found African communities in Brás de Pina, Caxias, Gramacho and downtown, and began helping refugees as an interpreter at Caritas and the Federal Police, where he also taught Portuguese for several years.",
+    "p2": "In 2010, with the help of his friend Pastor Marcos Fernandes, Casa Esperança Real Crescer was born: an NGO dedicated to helping people in need in local communities, welcoming foreigners who arrive without family, and supporting pygmy villages in Africa.",
+    "p3": "Distribution of food baskets, free haircut and braiding days, mental health support and free dental care are some of the actions we carry out to this day.",
+    "badge_number": "2010",
+    "badge_label": "since"
+  },
+  "projects": {
+    "tag": "Our Projects",
+    "title": "What we do",
+    "subtitle": "From Rio de Janeiro to the villages of Congo, our projects bring dignity, food and hope.",
+    "items": {
+      "congo": {
+        "title": "Mission in pygmy villages",
+        "description": "Supporting pygmy communities in Congo with food, building materials and assistance to village families."
+      },
+      "housing": {
+        "title": "Decent housing",
+        "description": "Delivering roofing sheets and building materials so families can rebuild their homes safely."
+      },
+      "refugees": {
+        "title": "Welcoming refugees",
+        "description": "Shelter, interpretation, Portuguese lessons and guidance for foreigners arriving in Brazil without family."
+      },
+      "community": {
+        "title": "Community social work",
+        "description": "Food basket distribution, free haircuts and braiding, mental health support and dental care in Brás de Pina."
+      }
+    }
+  },
+  "founder": {
+    "tag": "Meet our founder",
+    "title": "Pastor Leonardo",
+    "quote": "With the help of God, kind-hearted people, companies and public institutions, we will continue our mission.",
+    "p1": "Laza Ndosi, known as Pastor Leonardo, has been a missionary since 1998, dedicated to God's work and social causes. In 2009 he started the Betesda International vision, a church to welcome foreigners and teach the word of God.",
+    "p2": "To this day we continue to welcome people, guide them and do social work, with many ongoing projects in Brazil and Africa."
+  },
+  "gallery": {
+    "tag": "Gallery",
+    "title": "See our work in action",
+    "subtitle": "Snapshots from our missions in the villages of Congo and our actions in Brazil."
+  },
+  "donate": {
+    "tag": "Donate now",
+    "title": "Your donation changes lives",
+    "p1": "Every contribution becomes food, building materials, shelter and hope for those who need it most, in Brazil and in Congo.",
+    "features": {
+      "secure": "100% secure payment processed by Stripe",
+      "international": "We accept cards from anywhere in the world, in multiple currencies",
+      "recurring": "Monthly giving option for ongoing support",
+      "receipt": "You receive a receipt and a thank-you email"
+    },
+    "card_title": "Choose your donation amount",
+    "frequency": "Frequency",
+    "once": "One-time",
+    "monthly": "Monthly",
+    "currency": "Currency",
+    "amount": "Amount",
+    "custom_placeholder": "Custom amount",
+    "button": "Donate {{amount}}",
+    "button_empty": "Donate",
+    "processing": "Processing...",
+    "secure_note": "Secure donation via Stripe — credit and debit cards",
+    "error_generic": "We couldn't start your donation. Please try again shortly.",
+    "error_amount": "Please enter a valid donation amount."
+  },
+  "success": {
+    "title": "Thank you so much!",
+    "message": "Your donation was received successfully. May God bless your generosity! You will receive a confirmation email shortly.",
+    "close": "Close"
+  },
+  "canceled": {
+    "title": "Donation not completed",
+    "message": "Your donation was not completed. If something went wrong, you can try again anytime.",
+    "close": "Close"
+  },
+  "contact": {
+    "tag": "Contact",
+    "title": "Get in touch",
+    "address_title": "Address",
+    "phone_title": "Phones",
+    "email_title": "Email",
+    "org_title": "Organization"
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "tagline": "Together we can make a difference."
+  }
+}
