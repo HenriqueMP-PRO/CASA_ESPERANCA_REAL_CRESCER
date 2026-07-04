@@ -67,10 +67,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           },
         },
       ],
-      // Pix is only available for one-time BRL payments
-      ...(currency === "brl" && !isMonthly
-        ? { payment_method_types: ["card", "pix"] as Stripe.Checkout.SessionCreateParams.PaymentMethodType[] }
-        : {}),
+      payment_method_types: ["card"],
       metadata: { donor_locale: (locale as string) ?? "pt" },
       ...(isMonthly
         ? { subscription_data: { metadata: { donor_locale: (locale as string) ?? "pt" } } }

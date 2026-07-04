@@ -563,7 +563,8 @@ h2 {
 }
 
 .freq-toggle,
-.currency-row {
+.currency-row,
+.payment-method-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
@@ -624,6 +625,77 @@ h2 {
   font-size: 1rem;
   font-family: var(--font-body);
   background: transparent;
+}
+
+.pix-payment {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #e6dfd2;
+}
+
+.pix-qr-wrap {
+  display: grid;
+  place-items: center;
+  min-height: 216px;
+}
+
+.pix-qr-wrap img {
+  width: 216px;
+  height: 216px;
+  border: 1px solid #e6dfd2;
+}
+
+.pix-details {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+}
+
+.pix-details div {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.pix-details dt {
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.pix-details dd {
+  margin: 0;
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.copy-pix-key {
+  border: 1.5px solid var(--green-700);
+  background: transparent;
+  border-radius: 10px;
+  color: var(--green-800);
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem 0.8rem;
+}
+
+.pix-code {
+  min-height: 6rem;
+  resize: vertical;
+  border: 1.5px solid #d8d2c4;
+  border-radius: 10px;
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  padding: 0.75rem;
 }
 
 .donate-card .btn {
@@ -753,6 +825,11 @@ h2 {
 }
 
 @media (max-width: 768px) {
+  .pix-details div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
   .nav {
     position: fixed;
     top: 0;

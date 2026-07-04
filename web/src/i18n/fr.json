@@ -68,7 +68,7 @@
     "title": "Votre don transforme des vies",
     "p1": "Chaque contribution devient nourriture, matériaux de construction, accueil et espoir pour ceux qui en ont le plus besoin, au Brésil et au Congo.",
     "features": {
-      "secure": "Paiement 100 % sécurisé traité par Stripe",
+      "secure": "Pix direct vers l'institution ou paiement par carte traité par Stripe",
       "international": "Nous acceptons les cartes du monde entier, en plusieurs devises",
       "recurring": "Option de don mensuel pour un soutien continu",
       "receipt": "Vous recevez un reçu et un e-mail de remerciement"
@@ -78,14 +78,27 @@
     "once": "Unique",
     "monthly": "Mensuel",
     "currency": "Devise",
+    "payment_method": "Mode de paiement",
+    "pix": "Pix",
+    "card": "Carte",
     "amount": "Montant",
     "custom_placeholder": "Autre montant",
     "button": "Donner {{amount}}",
     "button_empty": "Donner",
     "processing": "Traitement...",
     "secure_note": "Don sécurisé via Stripe — cartes de crédit et de débit",
+    "pix_secure_note": "Le Pix va directement au compte de l'institution — vérifiez le nom du bénéficiaire avant de confirmer",
+    "pix_qr_alt": "QR Code Pix pour le don",
+    "pix_receiver": "Bénéficiaire",
+    "pix_bank": "Banque",
+    "pix_key": "Clé Pix",
+    "pix_copy_key": "Copier la clé Pix",
+    "pix_copy_code": "Copier le code Pix",
+    "pix_copied": "Copié !",
+    "pix_code_label": "Code Pix copier-coller",
     "error_generic": "Impossible de démarrer votre don. Veuillez réessayer dans quelques instants.",
-    "error_amount": "Veuillez saisir un montant valide."
+    "error_amount": "Veuillez saisir un montant valide.",
+    "error_copy_pix": "Impossible de copier le code Pix. Veuillez copier manuellement la clé ou le code affiché."
   },
   "success": {
     "title": "Merci beaucoup !",

@@ -1,8 +1,17 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import * as QRCode from "qrcode";
+import { buildPixPayload } from "../lib/pix";
 
 type Currency = "brl" | "usd" | "eur" | "gbp";
 type Frequency = "once" | "monthly";
+type PaymentMethod = "pix" | "card";
+
+const PIX_KEY = "09563258000170";
+const PIX_KEY_DISPLAY = "09.563.258/0001-70";
+const PIX_RECEIVER = "Casa Esperança Real - Crescer";
+const PIX_BANK = "Pageseguro Internet IP S.A.";
+const PIX_CITY = "Rio de Janeiro";
 
 const PRESETS: Record<Currency, number[]> = {
   brl: [25, 50, 100, 200, 500, 1000],
@@ -22,10 +31,13 @@ export default function Donate() {
   const { t, i18n } = useTranslation();
   const [currency, setCurrency] = useState<Currency>("brl");
   const [frequency, setFrequency] = useState<Frequency>("once");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("pix");
   const [preset, setPreset] = useState<number | null>(50);
   const [custom, setCustom] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [pixQrCode, setPixQrCode] = useState("");
+  const [copiedPix, setCopiedPix] = useState<"key" | "code" | null>(null);
 
   const amount = useMemo(() => {
     if (custom.trim() !== "") {
@@ -47,12 +59,76 @@ export default function Donate() {
     setCurrency(c);
     setPreset(PRESETS[c][1]);
     setCustom("");
+    setPaymentMethod(c === "brl" ? "pix" : "card");
+    setFrequency("once");
+  };
+
+  const isPix = currency === "brl" && paymentMethod === "pix";
+
+  const pixPayload = useMemo(() => {
+    if (!isPix || !amount) return "";
+
+    return buildPixPayload({
+      key: PIX_KEY,
+      receiverName: PIX_RECEIVER,
+      city: PIX_CITY,
+      amount,
+    });
+  }, [amount, isPix]);
+
+  useEffect(() => {
+    let isCurrent = true;
+
+    if (!pixPayload) {
+      setPixQrCode("");
+      return;
+    }
+
+    QRCode.toDataURL(pixPayload, {
+      width: 216,
+      margin: 2,
+      errorCorrectionLevel: "M",
+      color: {
+        dark: "#143520",
+        light: "#ffffff",
+      },
+    })
+      .then((url) => {
+        if (isCurrent) setPixQrCode(url);
+      })
+      .catch((err: unknown) => {
+        console.error("Could not generate Pix QR code", err);
+        if (isCurrent) setPixQrCode("");
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [pixPayload]);
+
+  const copyPix = async (value: string, type: "key" | "code") => {
+    await navigator.clipboard.writeText(value);
+    setCopiedPix(type);
+    window.setTimeout(() => setCopiedPix(null), 2000);
   };
 
   const donate = async () => {
     setError(null);
     if (!amount) {
       setError(t("donate.error_amount"));
+      return;
+    }
+    if (isPix) {
+      if (!pixPayload) {
+        setError(t("donate.error_amount"));
+        return;
+      }
+      try {
+        await copyPix(pixPayload, "code");
+      } catch (err) {
+        console.error(err);
+        setError(t("donate.error_copy_pix"));
+      }
       return;
     }
     setLoading(true);
@@ -96,22 +172,6 @@ export default function Donate() {
         <div className="donate-card">
           <h3>{t("donate.card_title")}</h3>
 
-          <span className="field-label">{t("donate.frequency")}</span>
-          <div className="freq-toggle">
-            <button
-              className={`chip${frequency === "once" ? " active" : ""}`}
-              onClick={() => setFrequency("once")}
-            >
-              {t("donate.once")}
-            </button>
-            <button
-              className={`chip${frequency === "monthly" ? " active" : ""}`}
-              onClick={() => setFrequency("monthly")}
-            >
-              {t("donate.monthly")}
-            </button>
-          </div>
-
           <span className="field-label">{t("donate.currency")}</span>
           <div className="currency-row">
             {(Object.keys(PRESETS) as Currency[]).map((c) => (
@@ -124,6 +184,49 @@ export default function Donate() {
               </button>
             ))}
           </div>
+
+          {currency === "brl" && (
+            <>
+              <span className="field-label">{t("donate.payment_method")}</span>
+              <div className="payment-method-row">
+                <button
+                  className={`chip${paymentMethod === "pix" ? " active" : ""}`}
+                  onClick={() => {
+                    setPaymentMethod("pix");
+                    setFrequency("once");
+                  }}
+                >
+                  {t("donate.pix")}
+                </button>
+                <button
+                  className={`chip${paymentMethod === "card" ? " active" : ""}`}
+                  onClick={() => setPaymentMethod("card")}
+                >
+                  {t("donate.card")}
+                </button>
+              </div>
+            </>
+          )}
+
+          {!isPix && (
+            <>
+              <span className="field-label">{t("donate.frequency")}</span>
+              <div className="freq-toggle">
+                <button
+                  className={`chip${frequency === "once" ? " active" : ""}`}
+                  onClick={() => setFrequency("once")}
+                >
+                  {t("donate.once")}
+                </button>
+                <button
+                  className={`chip${frequency === "monthly" ? " active" : ""}`}
+                  onClick={() => setFrequency("monthly")}
+                >
+                  {t("donate.monthly")}
+                </button>
+              </div>
+            </>
+          )}
 
           <span className="field-label">{t("donate.amount")}</span>
           <div className="amount-grid">
@@ -152,12 +255,63 @@ export default function Donate() {
             />
           </div>
 
+          {isPix && (
+            <div className="pix-payment">
+              <div className="pix-qr-wrap">
+                {pixQrCode && (
+                  <img
+                    src={pixQrCode}
+                    alt={t("donate.pix_qr_alt")}
+                    width="216"
+                    height="216"
+                  />
+                )}
+              </div>
+
+              <dl className="pix-details">
+                <div>
+                  <dt>{t("donate.pix_receiver")}</dt>
+                  <dd>{PIX_RECEIVER}</dd>
+                </div>
+                <div>
+                  <dt>{t("donate.pix_bank")}</dt>
+                  <dd>{PIX_BANK}</dd>
+                </div>
+                <div>
+                  <dt>{t("donate.pix_key")}</dt>
+                  <dd>{PIX_KEY_DISPLAY}</dd>
+                </div>
+              </dl>
+
+              <button
+                className="copy-pix-key"
+                type="button"
+                onClick={() => copyPix(PIX_KEY, "key")}
+              >
+                {copiedPix === "key" ? t("donate.pix_copied") : t("donate.pix_copy_key")}
+              </button>
+
+              {pixPayload && (
+                <textarea
+                  className="pix-code"
+                  value={pixPayload}
+                  readOnly
+                  aria-label={t("donate.pix_code_label")}
+                />
+              )}
+            </div>
+          )}
+
           <button className="btn btn-primary" onClick={donate} disabled={loading}>
-            {loading
-              ? t("donate.processing")
-              : formatted
-                ? t("donate.button", { amount: formatted })
-                : t("donate.button_empty")}
+            {isPix
+              ? copiedPix === "code"
+                ? t("donate.pix_copied")
+                : t("donate.pix_copy_code")
+              : loading
+                ? t("donate.processing")
+                : formatted
+                  ? t("donate.button", { amount: formatted })
+                  : t("donate.button_empty")}
           </button>
           {error && <p className="donate-error">{error}</p>}
           <p className="secure-note">
@@ -165,7 +319,7 @@ export default function Donate() {
               <rect x="4" y="10" width="16" height="11" rx="2" />
               <path d="M8 10V7a4 4 0 0 1 8 0v3" />
             </svg>
-            {t("donate.secure_note")}
+            {isPix ? t("donate.pix_secure_note") : t("donate.secure_note")}
           </p>
         </div>
       </div>

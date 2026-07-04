@@ -68,7 +68,7 @@
     "title": "Your donation changes lives",
     "p1": "Every contribution becomes food, building materials, shelter and hope for those who need it most, in Brazil and in Congo.",
     "features": {
-      "secure": "100% secure payment processed by Stripe",
+      "secure": "Direct Pix to the institution or card payment processed by Stripe",
       "international": "We accept cards from anywhere in the world, in multiple currencies",
       "recurring": "Monthly giving option for ongoing support",
       "receipt": "You receive a receipt and a thank-you email"
@@ -78,14 +78,27 @@
     "once": "One-time",
     "monthly": "Monthly",
     "currency": "Currency",
+    "payment_method": "Payment method",
+    "pix": "Pix",
+    "card": "Card",
     "amount": "Amount",
     "custom_placeholder": "Custom amount",
     "button": "Donate {{amount}}",
     "button_empty": "Donate",
     "processing": "Processing...",
     "secure_note": "Secure donation via Stripe — credit and debit cards",
+    "pix_secure_note": "Pix goes directly to the institution account — check the receiver name before confirming",
+    "pix_qr_alt": "Pix QR Code for donation",
+    "pix_receiver": "Receiver",
+    "pix_bank": "Bank",
+    "pix_key": "Pix key",
+    "pix_copy_key": "Copy Pix key",
+    "pix_copy_code": "Copy Pix code",
+    "pix_copied": "Copied!",
+    "pix_code_label": "Pix copy-and-paste code",
     "error_generic": "We couldn't start your donation. Please try again shortly.",
-    "error_amount": "Please enter a valid donation amount."
+    "error_amount": "Please enter a valid donation amount.",
+    "error_copy_pix": "We couldn't copy the Pix code. Please copy the displayed key or code manually."
   },
   "success": {
     "title": "Thank you so much!",

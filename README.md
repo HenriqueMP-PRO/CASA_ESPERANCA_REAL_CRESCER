@@ -61,11 +61,20 @@ vercel dev
    - URL: `https://SEU_DOMINIO/api/stripe-webhook`
    - Evento: `checkout.session.completed`
    - Copie o "Signing secret" (`whsec_...`) para `STRIPE_WEBHOOK_SECRET`.
-4. Para aceitar **Pix** (doações em BRL), ative-o em
-   Settings → Payment methods.
-
 Use as chaves de teste (`sk_test_...`) primeiro e faça uma doação com o cartão
 de teste `4242 4242 4242 4242` para validar o fluxo completo.
+
+## Configurando o Pix direto
+
+O Pix em BRL não passa pelo Stripe. O site exibe QR Code e código copia e cola
+para a chave Pix da instituição:
+
+- Chave Pix: `09.563.258/0001-70`
+- Recebedor: `Casa Esperança Real - Crescer`
+- Banco: `Pageseguro Internet IP S.A.`
+
+Antes de publicar, confirme no aplicativo bancário que a chave aponta para a
+conta PJ correta da instituição.
 
 ## Configurando o Resend (e-mail de obrigado)
 

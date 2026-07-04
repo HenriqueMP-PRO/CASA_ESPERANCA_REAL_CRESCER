@@ -68,7 +68,7 @@
     "title": "Sua doação transforma vidas",
     "p1": "Cada contribuição vira cesta básica, material de construção, acolhimento e esperança para quem mais precisa, no Brasil e no Congo.",
     "features": {
-      "secure": "Pagamento 100% seguro processado pelo Stripe",
+      "secure": "Pix direto para a instituição ou cartão processado pelo Stripe",
       "international": "Aceitamos cartões de todo o mundo, em várias moedas",
       "recurring": "Opção de doação mensal para apoiar continuamente",
       "receipt": "Você recebe um recibo e um agradecimento por e-mail"
@@ -78,14 +78,27 @@
     "once": "Única",
     "monthly": "Mensal",
     "currency": "Moeda",
+    "payment_method": "Forma de pagamento",
+    "pix": "Pix",
+    "card": "Cartão",
     "amount": "Valor",
     "custom_placeholder": "Outro valor",
     "button": "Doar {{amount}}",
     "button_empty": "Doar",
     "processing": "Processando...",
     "secure_note": "Doação segura via Stripe — cartão de crédito e débito",
+    "pix_secure_note": "Pix direto para a conta da instituição — confira o nome antes de confirmar",
+    "pix_qr_alt": "QR Code Pix para doação",
+    "pix_receiver": "Recebedor",
+    "pix_bank": "Banco",
+    "pix_key": "Chave Pix",
+    "pix_copy_key": "Copiar chave Pix",
+    "pix_copy_code": "Copiar código Pix",
+    "pix_copied": "Copiado!",
+    "pix_code_label": "Código Pix copia e cola",
     "error_generic": "Não foi possível iniciar a doação. Tente novamente em instantes.",
-    "error_amount": "Informe um valor válido para a doação."
+    "error_amount": "Informe um valor válido para a doação.",
+    "error_copy_pix": "Não foi possível copiar o código Pix. Copie manualmente a chave ou o código exibido."
   },
   "success": {
     "title": "Muito obrigado!",
