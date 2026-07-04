@@ -31,7 +31,7 @@ export default function Donate() {
   const { t, i18n } = useTranslation();
   const [currency, setCurrency] = useState<Currency>("brl");
   const [frequency, setFrequency] = useState<Frequency>("once");
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("pix");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
   const [preset, setPreset] = useState<number | null>(50);
   const [custom, setCustom] = useState("");
   const [loading, setLoading] = useState(false);
@@ -59,7 +59,7 @@ export default function Donate() {
     setCurrency(c);
     setPreset(PRESETS[c][1]);
     setCustom("");
-    setPaymentMethod(c === "brl" ? "pix" : "card");
+    setPaymentMethod("card");
     setFrequency("once");
   };
 
