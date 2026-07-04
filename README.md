@@ -44,6 +44,7 @@ vercel dev
 | `STRIPE_WEBHOOK_SECRET` | Passo "Webhook do Stripe" abaixo |
 | `RESEND_API_KEY` | [resend.com/api-keys](https://resend.com/api-keys) |
 | `EMAIL_FROM` | Remetente verificado no Resend (ex.: `ONG <contato@seudominio.org>`) |
+| `EMAIL_REPLY_TO` | Opcional; padrão: `Casa Esperança Real Crescer <casaesperancarealcrescer@gmail.com>` |
 | `SITE_URL` | URL pública do site (ex.: `https://www.casaesperancarealcrescer.org`) |
 | `VITE_SANITY_PROJECT_ID` | [sanity.io/manage](https://sanity.io/manage) (opcional) |
 | `VITE_SANITY_DATASET` | normalmente `production` (opcional) |
@@ -81,6 +82,9 @@ conta PJ correta da instituição.
 1. Crie a conta em [resend.com](https://resend.com) (plano gratuito: 100 e-mails/dia).
 2. Adicione e verifique o domínio da ONG (Domains → Add Domain, registros DNS).
 3. Crie uma API key e preencha `RESEND_API_KEY` e `EMAIL_FROM`.
+4. As respostas aos e-mails de agradecimento usam `EMAIL_REPLY_TO`; se a
+   variável não estiver configurada, elas vão para
+   `casaesperancarealcrescer@gmail.com`.
 
 Sem o Resend configurado, o doador ainda recebe o recibo padrão do Stripe
 (ative em Stripe → Settings → Emails → "Successful payments").

@@ -42,6 +42,8 @@ const EMAILS: Record<string, { subject: string; body: (name: string, amount: str
   },
 };
 
+const DEFAULT_REPLY_TO = "Casa Esperança Real Crescer <casaesperancarealcrescer@gmail.com>";
+
 async function readRawBody(req: VercelRequest): Promise<Buffer> {
   const chunks: Buffer[] = [];
   for await (const chunk of req) {
@@ -93,6 +95,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           from:
             process.env.EMAIL_FROM ??
             "Casa Esperança Real Crescer <onboarding@resend.dev>",
+          replyTo: process.env.EMAIL_REPLY_TO ?? DEFAULT_REPLY_TO,
           to: email,
           subject: template.subject,
           html: template.body(name, amount),
