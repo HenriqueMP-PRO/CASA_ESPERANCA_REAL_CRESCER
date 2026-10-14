@@ -1,11 +1,12 @@
 import { useTranslation } from "react-i18next";
+import ResponsiveImg from "./ResponsiveImg";
 
 export default function Founder({ image }: { image: string }) {
   const { t } = useTranslation();
   return (
     <section className="section" id="fundador">
       <div className="container founder-grid">
-        <img src={image} alt={t("founder.title")} loading="lazy" />
+        <ResponsiveImg src={image} sizes="380px" alt={t("founder.title")} loading="lazy" />
         <div className="founder-text">
           <span className="section-tag">{t("founder.tag")}</span>
           <h2>{t("founder.title")}</h2>

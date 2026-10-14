@@ -1,26 +1,38 @@
 import { randomUUID } from "node:crypto";
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 
-// Hosted checkout: financial/payer data is collected by Mercado Pago, not this site.
-// Receipt reconciliation is performed in the provider dashboard in this version.
+const ASAAS_API = {
+  production: "https://api.asaas.com/v3",
+  sandbox: "https://api-sandbox.asaas.com/v3",
+} as const;
+
+const ASAAS_CHECKOUT_HOSTS = {
+  production: ["www.asaas.com", "asaas.com"],
+  sandbox: ["sandbox.asaas.com"],
+} as const;
+
+// Hosted checkout: card/payer data is collected by Asaas, not this site.
+// Receipt reconciliation is performed in the Asaas dashboard in this version.
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Cache-Control", "no-store");
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const { amount, currency, frequency, locale } = req.body ?? {};
+  const { amount, currency, frequency } = req.body ?? {};
   if (
-    !Number.isSafeInteger(amount) || amount < 100 || amount > 100_000_000 ||
+    !Number.isSafeInteger(amount) || amount < 500 || amount > 100_000_000 ||
     currency !== "brl" || frequency !== "once"
   ) {
     return res.status(400).json({ error: "Invalid BRL donation" });
   }
 
-  const token = process.env.MERCADO_PAGO_ACCESS_TOKEN;
-  if (!token || process.env.VITE_BRAZIL_PAYMENTS_ENABLED !== "true") {
+  const apiKey = process.env.ASAAS_API_KEY;
+  if (!apiKey || process.env.VITE_BRAZIL_PAYMENTS_ENABLED !== "true") {
     return res.status(503).json({ error: "Brazilian payments are not configured" });
   }
+  // Anything other than an explicit "production" stays in the sandbox.
+  const environment = process.env.ASAAS_ENVIRONMENT === "production" ? "production" : "sandbox";
 
   let origin: string;
   try {
@@ -34,46 +46,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const response = await fetch("https://api.mercadopago.com/checkout/preferences", {
+    const response = await fetch(`${ASAAS_API[environment]}/paymentLinks`, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${token}`,
+        access_token: apiKey,
         "Content-Type": "application/json",
+        "User-Agent": "casa-esperanca-real-crescer-site",
       },
       signal: AbortSignal.timeout(15_000),
       body: JSON.stringify({
-        items: [{
-          id: "donation-cerc",
-          title: "Doação — Casa Esperança Real Crescer",
-          quantity: 1,
-          currency_id: "BRL",
-          unit_price: amount / 100,
-        }],
-        external_reference: `cerc-${randomUUID()}`,
-        metadata: {
-          donor_locale: ["pt", "en", "fr"].includes(locale) ? locale : "pt",
-          purpose: "donation",
-        },
+        name: "Doação — Casa Esperança Real Crescer",
+        description: "Doação única para a Casa Esperança Real Crescer",
+        value: amount / 100,
+        billingType: "CREDIT_CARD",
+        chargeType: "DETACHED",
+        externalReference: `cerc-${randomUUID()}`,
+        notificationEnabled: false,
         // Never infer payment approval from a browser redirect.
-        back_urls: {
-          success: `${origin}/?donation=review`,
-          pending: `${origin}/?donation=review`,
-          failure: `${origin}/?donation=canceled`,
+        callback: {
+          successUrl: `${origin}/?donation=review`,
+          autoRedirect: true,
         },
-        auto_return: "approved",
-        payment_methods: { installments: 1 },
       }),
     });
 
     if (!response.ok) {
-      console.error("Mercado Pago preference creation failed", response.status);
+      console.error("Asaas payment link creation failed", response.status);
       return res.status(502).json({ error: "Could not create Brazilian checkout" });
     }
-    const data = await response.json() as { init_point?: string };
-    const checkoutUrl = new URL(data.init_point ?? "");
+    const data = await response.json() as { url?: string };
+    const checkoutUrl = new URL(data.url ?? "");
     if (
       checkoutUrl.protocol !== "https:" ||
-      checkoutUrl.hostname !== "www.mercadopago.com.br" ||
+      !(ASAAS_CHECKOUT_HOSTS[environment] as readonly string[]).includes(checkoutUrl.hostname) ||
       checkoutUrl.username || checkoutUrl.password
     ) {
       throw new Error("Unexpected checkout URL");

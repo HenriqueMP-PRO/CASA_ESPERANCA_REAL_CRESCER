@@ -10,6 +10,7 @@ import Donate from "./components/Donate";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import DonationStatusModal from "./components/DonationStatusModal";
+import MobileDonateButton from "./components/MobileDonateButton";
 import { fallbackContent, type SiteContent } from "./content/fallback";
 import { loadContent } from "./lib/sanity";
 
@@ -30,10 +31,11 @@ export default function App() {
         <Projects projects={content.projects} />
         <Founder image={content.founderImage} />
         <Gallery images={content.gallery} />
-        <Donate />
+        <Donate whatsapp={content.contact.whatsapp} />
         <Contact contact={content.contact} />
       </main>
       <Footer orgName={content.contact.orgName} />
+      <MobileDonateButton />
       <DonationStatusModal />
     </>
   );

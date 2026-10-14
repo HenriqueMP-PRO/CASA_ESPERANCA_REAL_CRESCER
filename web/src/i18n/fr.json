@@ -5,16 +5,18 @@
     "founder": "Fondateur",
     "gallery": "Galerie",
     "contact": "Contact",
-    "donate": "Faire un don"
+    "donate": "Faire un don",
+    "language": "Langue",
+    "menu": "Menu"
   },
   "hero": {
-    "title": "Ensemble, nous pouvons faire la <1>différence</1> !",
-    "subtitle": "Casa Esperança Real Crescer accueille des réfugiés et des familles dans le besoin au Brésil et apporte de l'espoir aux communautés pygmées au Congo depuis 2010.",
+    "title": "Accueil à Rio, <1>espoir</1> au Congo",
+    "subtitle": "Depuis 2010, la Casa Esperança Real Crescer accueille des réfugiés et des familles vulnérables à Rio de Janeiro et apporte nourriture, logement et espoir aux peuples autochtones pygmées du Congo.",
     "cta_donate": "Faire un don",
     "cta_learn": "Découvrir notre travail"
   },
   "stats": {
-    "years": "années de mission",
+    "years": "années de mission du fondateur",
     "communities": "communautés aidées",
     "countries": "pays touchés",
     "since": "ONG fondée en"
@@ -22,11 +24,12 @@
   "about": {
     "tag": "Notre Histoire",
     "title": "Une mission née de l'accueil",
-    "p1": "Tout a commencé avec le Pasteur Leonardo (Laza Ndosi), missionnaire depuis 1998, arrivé au Brésil en 2003. À Rio de Janeiro, il a rencontré des communautés africaines à Brás de Pina, Caxias, Gramacho et au centre-ville, et a commencé à aider les réfugiés comme interprète à la Caritas et à la Police Fédérale, où il a aussi enseigné le portugais pendant plusieurs années.",
-    "p2": "En 2010, avec l'aide de son ami le Pasteur Marcos Fernandes, est née Casa Esperança Real Crescer : une ONG dédiée à aider les personnes démunies des communautés, à accueillir les étrangers arrivés sans famille et à soutenir les villages pygmées en Afrique.",
+    "p1": "Tout a commencé avec le Pasteur Leonardo (Laza Ndosi), missionnaire depuis 1998, arrivé au Brésil en 2003. À Rio de Janeiro, il a rencontré des communautés africaines à Brás de Pina, Caxias, Gramacho et au centre-ville. Il a alors commencé à aider les réfugiés comme interprète à la Caritas et à la Police fédérale, où il a aussi enseigné le portugais pendant plusieurs années.",
+    "p2": "En 2010, avec l'aide de son ami le Pasteur Marcos Fernandes, est née la Casa Esperança Real Crescer : une ONG dédiée à aider les personnes démunies des communautés, à accueillir les étrangers arrivés sans famille et à soutenir les villages des peuples autochtones pygmées en Afrique.",
     "p3": "Distribution de paniers alimentaires, journées gratuites de coiffure et de tresses, soutien en santé mentale et soins dentaires gratuits font partie des actions que nous menons encore aujourd'hui.",
     "badge_number": "2010",
-    "badge_label": "depuis"
+    "badge_label": "depuis",
+    "image_alt": "Communauté réunie sous un abri de chaume dans un village"
   },
   "projects": {
     "tag": "Nos Projets",
@@ -34,8 +37,8 @@
     "subtitle": "De Rio de Janeiro aux villages du Congo, nos projets apportent dignité, nourriture et espoir.",
     "items": {
       "congo": {
-        "title": "Mission dans les villages pygmées",
-        "description": "Soutien aux communautés pygmées au Congo avec de la nourriture, des matériaux de construction et une assistance aux familles des villages."
+        "title": "Mission auprès des peuples autochtones pygmées",
+        "description": "Soutien aux villages des peuples autochtones pygmées au Congo avec de la nourriture, des matériaux de construction et une assistance aux familles."
       },
       "housing": {
         "title": "Un logement digne",
@@ -55,23 +58,39 @@
     "tag": "Rencontrez notre fondateur",
     "title": "Pasteur Leonardo",
     "quote": "Avec l'aide de Dieu, des personnes de bon cœur, des entreprises et des institutions publiques, nous continuerons notre mission.",
-    "p1": "Laza Ndosi, connu sous le nom de Pasteur Leonardo, est missionnaire depuis 1998, dévoué à l'œuvre de Dieu et aux œuvres sociales. En 2009, il a lancé la vision Betesda International, une église pour accueillir les étrangers et enseigner la parole de Dieu.",
+    "p1": "Laza Ndosi, connu sous le nom de Pasteur Leonardo, est missionnaire depuis 1998 et consacre sa vie à l'œuvre de Dieu et à l'action sociale. En 2009, il a fondé Betesda International, une église qui accueille les étrangers et enseigne la parole de Dieu.",
     "p2": "Aujourd'hui encore, nous continuons à accueillir les personnes, à les orienter et à faire l'œuvre sociale, avec de nombreux projets en cours au Brésil et en Afrique."
   },
   "gallery": {
     "tag": "Galerie",
     "title": "Voyez notre travail en action",
-    "subtitle": "Images de nos missions dans les villages du Congo et de nos actions au Brésil."
+    "subtitle": "Images de nos missions et de nos actions. Touchez une photo pour l'agrandir.",
+    "open": "Agrandir la photo",
+    "close": "Fermer",
+    "prev": "Photo précédente",
+    "next": "Photo suivante",
+    "counter": "{{current}} sur {{total}}",
+    "captions": {
+      "img003": "Enfants et familles réunis devant une maison en briques du village",
+      "img004": "Des jeunes dansent pour célébrer dans un bâtiment en briques",
+      "img006": "Habitants du village devant une maison au toit de chaume",
+      "img007": "Un grand groupe réuni sous un abri en feuilles de palmier, livres en main",
+      "img008": "Communauté réunie en plein air, beaucoup avec des livres à la main",
+      "img009": "Habitants du village alignés avec des vélos neufs",
+      "img011": "Vélos neufs alignés sur la pelouse, avec un homme bras ouverts au centre",
+      "img013": "Un villageois transporte à vélo des feuilles de palmier tressées pour les toitures",
+      "img014": "Femmes et enfants dansent sous un abri de chaume"
+    }
   },
   "donate": {
     "tag": "Faites un don",
     "title": "Votre don transforme des vies",
     "p1": "Chaque contribution devient nourriture, matériaux de construction, accueil et espoir pour ceux qui en ont le plus besoin, au Brésil et au Congo.",
     "features": {
-      "secure": "Pix directement à Banco do Brasil ; paiements internationaux via Stripe",
-      "international": "Nous acceptons les cartes du monde entier, en plusieurs devises",
-      "recurring": "Dons mensuels par carte disponibles en USD, EUR et GBP",
-      "receipt": "Reçus du prestataire de paiement ; remerciements par e-mail pour les dons via Stripe"
+      "secure": "Au Brésil, Pix directement sur le compte de l'institution à la Banco do Brasil",
+      "international": "Donnez depuis n'importe quel pays par carte, en dollars, euros ou livres",
+      "recurring": "Don mensuel disponible pour les donateurs à l'étranger",
+      "receipt": "Paiements traités par des plateformes sécurisées, avec reçu immédiat"
     },
     "card_title": "Choisissez le montant de votre don",
     "frequency": "Fréquence",
@@ -80,35 +99,35 @@
     "currency": "Devise",
     "payment_method": "Mode de paiement",
     "pix": "Pix",
-    "card": "Carte",
+    "card": "Carte de crédit",
     "amount": "Montant",
     "custom_placeholder": "Autre montant",
     "button": "Donner {{amount}}",
     "button_empty": "Donner",
     "processing": "Traitement...",
-    "secure_note": "Don sécurisé via Stripe — cartes de crédit et de débit",
-    "pix_secure_note": "Pix directement à Banco do Brasil — vérifiez le bénéficiaire avant de confirmer",
+    "secure_note": "Paiement sécurisé via Stripe — cartes de crédit et de débit",
+    "pix_secure_note": "Pix directement sur le compte de l'institution à la Banco do Brasil",
     "pix_qr_alt": "QR Code Pix pour le don",
     "pix_receiver": "Bénéficiaire",
     "pix_bank": "Banque",
     "pix_key": "Clé Pix",
-    "pix_copy_key": "Copier la clé Pix",
     "pix_copy_code": "Copier le code Pix",
     "pix_copied": "Copié !",
     "pix_code_label": "Code Pix copier-coller",
     "error_generic": "Impossible de démarrer votre don. Veuillez réessayer dans quelques instants.",
     "error_amount": "Veuillez saisir un montant valide.",
     "error_copy_pix": "Impossible de copier le code Pix. Veuillez copier manuellement la clé ou le code affiché.",
-    "brazil_note": "Don ponctuel en BRL. Choisissez Pix ou carte sur Mercado Pago.",
-    "brazil_unavailable": "Nous préparons les paiements au Brésil. Les dons en BRL par Pix ou carte seront bientôt disponibles.",
-    "brazil_secure_note": "Paiement en BRL sur la page sécurisée de Mercado Pago",
-    "pix_unavailable": "Clé Pix Banco do Brasil en attente de confirmation",
+    "brazil_unavailable": "Les dons en BRL seront bientôt disponibles. En attendant, écrivez-nous sur WhatsApp pour savoir comment aider.",
+    "brazil_secure_note": "Paiement par carte sur la page sécurisée d'Asaas",
     "bank_agency": "Agence",
     "bank_account": "Compte",
     "bank_current": "Compte courant",
-    "pix_manual_note": "Pix est un don ponctuel, vérifié par l’institution sur son relevé bancaire. Conservez votre reçu ; aucun prélèvement mensuel ni e-mail automatique.",
-    "bank_cnpj_pending": "En attente de confirmation par l’institution",
-    "bank_manual_note": "Vous pouvez envoyer un Pix avec les coordonnées bancaires dans votre application : banque, agence, compte courant et CNPJ du titulaire. Utilisez cette option seulement après confirmation du CNPJ ici. Le numéro de compte n’est pas une clé Pix."
+    "pix_manual_note": "Vérifiez le nom du bénéficiaire avant de confirmer. Conservez votre reçu : si vous souhaitez un remerciement, envoyez-le-nous par e-mail ou WhatsApp.",
+    "bank_manual_note": "Dans l'application de votre banque, choisissez Pix → Agence et compte (ou « coordonnées bancaires »), puis saisissez les données ci-dessous et le montant de votre don.",
+    "copy": "Copier",
+    "pix_qr_instructions": "Ouvrez l'application de votre banque, choisissez Pix → Payer par QR Code et visez avec l'appareil photo. Sur mobile, utilisez le bouton ci-dessous pour copier le code.",
+    "whatsapp_message": "Bonjour ! Je souhaite faire un don à la Casa Esperança Real Crescer.",
+    "error_card_min": "Le don minimum par carte en BRL est de 5,00 R$."
   },
   "success": {
     "title": "Merci beaucoup !",
@@ -126,15 +145,17 @@
     "address_title": "Adresse",
     "phone_title": "Téléphones",
     "email_title": "E-mail",
-    "org_title": "Organisation"
+    "org_title": "Organisation",
+    "whatsapp_cta": "Discuter sur WhatsApp",
+    "map_cta": "Voir sur la carte"
   },
   "footer": {
     "rights": "Tous droits réservés.",
     "tagline": "Ensemble, nous pouvons faire la différence."
   },
   "review": {
-    "title": "Vérifiez votre paiement",
-    "message": "Consultez le résultat sur Mercado Pago ou votre reçu bancaire. Le retour sur ce site ne confirme pas la réception ; l’institution vérifie les dons auprès du prestataire.",
+    "title": "Merci pour votre don !",
+    "message": "Si le paiement a abouti, conservez le reçu affiché par la plateforme de paiement. La confirmation finale vient de la plateforme ; le retour sur ce site ne confirme pas la réception.",
     "close": "Fermer"
   }
 }

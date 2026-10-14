@@ -1,10 +1,11 @@
 import { Trans, useTranslation } from "react-i18next";
+import ResponsiveImg from "./ResponsiveImg";
 
 export default function Hero({ image }: { image: string }) {
   const { t } = useTranslation();
   return (
     <section className="hero" id="inicio">
-      <img className="hero-bg" src={image} alt="" fetchPriority="high" />
+      <ResponsiveImg className="hero-bg" src={image} sizes="100vw" alt="" fetchPriority="high" />
       <div className="container">
         <div className="hero-content">
           <h1>

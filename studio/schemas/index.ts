@@ -1,4 +1,4 @@
-import { defineField, defineType } from "sanity";
+import { defineField, defineType, type StringRule } from "sanity";
 
 const localizedString = (name: string, title: string) =>
   defineField({
@@ -45,6 +45,7 @@ const galleryImage = defineType({
   type: "document",
   fields: [
     defineField({ name: "image", title: "Imagem", type: "image", options: { hotspot: true } }),
+    localizedString("caption", "Legenda (também usada como descrição para leitores de tela)"),
     defineField({
       name: "tall",
       title: "Imagem alta (ocupa 2 linhas)",
@@ -54,8 +55,8 @@ const galleryImage = defineType({
     defineField({ name: "order", title: "Ordem", type: "number", initialValue: 0 }),
   ],
   preview: {
-    select: { media: "image" },
-    prepare: ({ media }) => ({ title: "Imagem da galeria", media }),
+    select: { title: "caption.pt", media: "image" },
+    prepare: ({ title, media }) => ({ title: title || "Imagem da galeria", media }),
   },
 });
 
@@ -87,6 +88,12 @@ const siteSettings = defineType({
         { name: "cnpj", title: "CNPJ", type: "string" },
         { name: "address", title: "Endereço", type: "string" },
         { name: "phones", title: "Telefones", type: "array", of: [{ type: "string" }] },
+        {
+          name: "whatsapp",
+          title: "WhatsApp (somente números, com 55 e DDD)",
+          type: "string",
+          validation: (rule: StringRule) => rule.regex(/^55\d{10,11}$/),
+        },
         { name: "email", title: "E-mail", type: "string" },
       ],
     }),

@@ -5,16 +5,18 @@
     "founder": "Fundador",
     "gallery": "Galeria",
     "contact": "Contato",
-    "donate": "Doar"
+    "donate": "Doar",
+    "language": "Idioma",
+    "menu": "Menu"
   },
   "hero": {
-    "title": "Juntos podemos fazer a <1>diferença</1>!",
-    "subtitle": "A Casa Esperança Real Crescer acolhe refugiados e famílias carentes no Brasil e leva esperança às comunidades pigmeias no Congo desde 2010.",
+    "title": "Acolhimento no Rio, <1>esperança</1> no Congo",
+    "subtitle": "Desde 2010, a Casa Esperança Real Crescer acolhe refugiados e famílias em situação de vulnerabilidade no Rio de Janeiro e leva alimento, moradia e esperança aos povos autóctones pigmeus do Congo.",
     "cta_donate": "Fazer uma doação",
     "cta_learn": "Conheça nosso trabalho"
   },
   "stats": {
-    "years": "anos de missão",
+    "years": "anos de missão do fundador",
     "communities": "comunidades atendidas",
     "countries": "países alcançados",
     "since": "ONG fundada em"
@@ -22,11 +24,12 @@
   "about": {
     "tag": "Nossa História",
     "title": "Uma missão que nasceu do acolhimento",
-    "p1": "Tudo começou com o Pastor Leonardo (Laza Ndosi), missionário desde 1998, que chegou ao Brasil em 2003. No Rio de Janeiro, encontrou comunidades de africanos em Brás de Pina, Caxias, Gramacho e no centro da cidade, e passou a auxiliar refugiados como intérprete nas Cáritas e na Polícia Federal, onde também foi professor de língua portuguesa por vários anos.",
-    "p2": "Em 2010, com a ajuda do amigo Pastor Marcos Fernandes, nasceu a Casa Esperança Real Crescer: uma ONG dedicada a ajudar a população carente das comunidades, acolher estrangeiros que chegam sem parentes e apoiar as aldeias dos pigmeus na África.",
+    "p1": "Tudo começou com o Pastor Leonardo (Laza Ndosi), missionário desde 1998, que chegou ao Brasil em 2003. No Rio de Janeiro, ele encontrou comunidades africanas em Brás de Pina, Caxias, Gramacho e no Centro. Passou então a ajudar refugiados como intérprete na Cáritas e na Polícia Federal, onde também foi professor de português por vários anos.",
+    "p2": "Em 2010, com a ajuda do amigo Pastor Marcos Fernandes, nasceu a Casa Esperança Real Crescer: uma ONG dedicada a ajudar a população carente das comunidades, acolher estrangeiros que chegam sem parentes e apoiar as aldeias dos povos autóctones pigmeus na África.",
     "p3": "Distribuição de cestas básicas, dias de corte de cabelo e tranças gratuitos, apoio à saúde mental e atendimento odontológico gratuito são algumas das ações que realizamos até hoje.",
     "badge_number": "2010",
-    "badge_label": "desde"
+    "badge_label": "desde",
+    "image_alt": "Comunidade reunida sob uma cobertura de palha em uma aldeia"
   },
   "projects": {
     "tag": "Nossos Projetos",
@@ -34,8 +37,8 @@
     "subtitle": "Do Rio de Janeiro às aldeias do Congo, nossos projetos levam dignidade, alimento e esperança.",
     "items": {
       "congo": {
-        "title": "Missão nas aldeias pigmeias",
-        "description": "Apoio às comunidades pigmeias no Congo com alimentos, materiais de construção e assistência às famílias das aldeias."
+        "title": "Missão com os povos autóctones pigmeus",
+        "description": "Apoio às aldeias dos povos autóctones pigmeus no Congo com alimentos, materiais de construção e assistência às famílias."
       },
       "housing": {
         "title": "Moradia digna",
@@ -55,23 +58,39 @@
     "tag": "Conheça nosso fundador",
     "title": "Pastor Leonardo",
     "quote": "Com a ajuda de Deus, das pessoas de bom coração, das empresas e dos órgãos públicos, vamos continuar a nossa missão.",
-    "p1": "Laza Ndosi, conhecido como Pastor Leonardo, é missionário desde 1998, dedicado à obra de Deus e às obras sociais. Em 2009 iniciou a visão Betesda Internacional, uma igreja para acolher estrangeiros e ensinar a palavra de Deus.",
+    "p1": "Laza Ndosi, conhecido como Pastor Leonardo, é missionário desde 1998 e dedica sua vida à obra de Deus e à ação social. Em 2009, fundou a Betesda Internacional, igreja que acolhe estrangeiros e ensina a palavra de Deus.",
     "p2": "Até hoje seguimos acolhendo pessoas, orientando-as e fazendo a obra social, com muitos projetos em curso no Brasil e na África."
   },
   "gallery": {
     "tag": "Galeria",
     "title": "Veja nosso trabalho em ação",
-    "subtitle": "Registros das nossas missões nas aldeias do Congo e das ações no Brasil."
+    "subtitle": "Registros das nossas missões e ações. Toque em uma foto para ampliar.",
+    "open": "Ampliar foto",
+    "close": "Fechar",
+    "prev": "Foto anterior",
+    "next": "Próxima foto",
+    "counter": "{{current}} de {{total}}",
+    "captions": {
+      "img003": "Crianças e famílias reunidas diante de uma casa de tijolos na aldeia",
+      "img004": "Jovens dançam em celebração dentro de uma construção de tijolos",
+      "img006": "Moradores da aldeia diante de uma casa com telhado de palha",
+      "img007": "Grande grupo reunido sob um abrigo de folhas de palmeira, com livros nas mãos",
+      "img008": "Comunidade reunida ao ar livre, muitos com livros nas mãos",
+      "img009": "Moradores da aldeia enfileirados com bicicletas novas",
+      "img011": "Bicicletas novas enfileiradas no gramado, com um homem de braços abertos ao centro",
+      "img013": "Morador transporta de bicicleta folhas de palmeira trançadas para cobrir telhados",
+      "img014": "Mulheres e crianças dançam sob uma cobertura de palha"
+    }
   },
   "donate": {
     "tag": "Doe agora",
     "title": "Sua doação transforma vidas",
     "p1": "Cada contribuição vira cesta básica, material de construção, acolhimento e esperança para quem mais precisa, no Brasil e no Congo.",
     "features": {
-      "secure": "Pix direto para o Banco do Brasil; pagamentos internacionais via Stripe",
-      "international": "Aceitamos cartões de todo o mundo, em várias moedas",
-      "recurring": "Doação mensal disponível no cartão em USD, EUR e GBP",
-      "receipt": "Recibos no provedor de pagamento; agradecimento por e-mail nas doações via Stripe"
+      "secure": "Em reais pelo Pix, direto na conta da instituição no Banco do Brasil",
+      "international": "Doe de qualquer país com cartão, em dólar, euro ou libra",
+      "recurring": "Doação mensal disponível para quem doa do exterior",
+      "receipt": "Pagamentos processados por plataformas seguras, com comprovante na hora"
     },
     "card_title": "Escolha o valor da sua doação",
     "frequency": "Frequência",
@@ -80,35 +99,35 @@
     "currency": "Moeda",
     "payment_method": "Forma de pagamento",
     "pix": "Pix",
-    "card": "Cartão",
+    "card": "Cartão de crédito",
     "amount": "Valor",
     "custom_placeholder": "Outro valor",
     "button": "Doar {{amount}}",
     "button_empty": "Doar",
     "processing": "Processando...",
-    "secure_note": "Doação segura via Stripe — cartão de crédito e débito",
-    "pix_secure_note": "Pix direto para o Banco do Brasil — confira o recebedor antes de confirmar",
+    "secure_note": "Pagamento seguro via Stripe — cartão de crédito e débito",
+    "pix_secure_note": "Pix direto para a conta da instituição no Banco do Brasil",
     "pix_qr_alt": "QR Code Pix para doação",
     "pix_receiver": "Recebedor",
     "pix_bank": "Banco",
     "pix_key": "Chave Pix",
-    "pix_copy_key": "Copiar chave Pix",
     "pix_copy_code": "Copiar código Pix",
     "pix_copied": "Copiado!",
     "pix_code_label": "Código Pix copia e cola",
     "error_generic": "Não foi possível iniciar a doação. Tente novamente em instantes.",
     "error_amount": "Informe um valor válido para a doação.",
     "error_copy_pix": "Não foi possível copiar o código Pix. Copie manualmente a chave ou o código exibido.",
-    "brazil_note": "Doação única em reais. Escolha Pix ou cartão no checkout do Mercado Pago.",
-    "brazil_unavailable": "Estamos preparando os pagamentos no Brasil. Em breve você poderá doar em reais por Pix ou cartão.",
-    "brazil_secure_note": "Pagamento em reais no ambiente seguro do Mercado Pago",
-    "pix_unavailable": "Chave Pix do Banco do Brasil aguardando confirmação",
+    "brazil_unavailable": "As doações em reais estarão disponíveis em breve. Enquanto isso, fale com a gente pelo WhatsApp para saber como ajudar.",
+    "brazil_secure_note": "Pagamento com cartão no ambiente seguro do Asaas",
     "bank_agency": "Agência",
     "bank_account": "Conta",
     "bank_current": "Conta corrente",
-    "pix_manual_note": "Pix é uma doação única, conferida no extrato pela instituição. Guarde o comprovante do seu banco; não há cobrança mensal nem e-mail automático.",
-    "bank_cnpj_pending": "Aguardando confirmação da instituição",
-    "bank_manual_note": "Você pode fazer Pix pelos dados bancários no aplicativo do seu banco, informando banco, agência, conta corrente e CNPJ do titular. Use esse caminho somente quando o CNPJ estiver confirmado aqui. O número da conta não é uma chave Pix."
+    "pix_manual_note": "Antes de confirmar, verifique o nome do recebedor. Guarde o comprovante: se quiser receber nosso agradecimento, envie-o pelo e-mail ou WhatsApp.",
+    "bank_manual_note": "No app do seu banco, escolha Pix → Agência e conta (ou \"dados bancários\"), informe os dados abaixo e o valor que deseja doar.",
+    "copy": "Copiar",
+    "pix_qr_instructions": "Abra o app do seu banco, escolha Pix → Pagar com QR Code e aponte a câmera. Se estiver no celular, use o botão abaixo para copiar o código.",
+    "whatsapp_message": "Olá! Gostaria de fazer uma doação para a Casa Esperança Real Crescer.",
+    "error_card_min": "O valor mínimo para doação com cartão é R$ 5,00."
   },
   "success": {
     "title": "Muito obrigado!",
@@ -126,15 +145,17 @@
     "address_title": "Endereço",
     "phone_title": "Telefones",
     "email_title": "E-mail",
-    "org_title": "Organização"
+    "org_title": "Organização",
+    "whatsapp_cta": "Conversar no WhatsApp",
+    "map_cta": "Ver no mapa"
   },
   "footer": {
     "rights": "Todos os direitos reservados.",
     "tagline": "Juntos podemos fazer a diferença."
   },
   "review": {
-    "title": "Consulte seu pagamento",
-    "message": "Confira o resultado no Mercado Pago ou no comprovante do seu banco. Voltar ao site não confirma o recebimento; a instituição confere as doações no provedor.",
+    "title": "Obrigado por doar!",
+    "message": "Se o pagamento foi concluído, guarde o comprovante exibido pela plataforma de pagamento. A confirmação final é feita por ela; voltar ao site não confirma o recebimento.",
     "close": "Fechar"
   }
 }

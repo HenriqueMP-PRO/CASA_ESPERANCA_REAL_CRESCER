@@ -29,7 +29,8 @@ async function call(handler: typeof brazilCheckout, body: unknown, method = "POS
 
 const donation = { amount: 5000, currency: "brl", frequency: "once", locale: "pt" };
 function configureBrazil() {
-  process.env.MERCADO_PAGO_ACCESS_TOKEN = "fixture-token";
+  process.env.ASAAS_API_KEY = "fixture-token";
+  process.env.ASAAS_ENVIRONMENT = "production";
   process.env.VITE_BRAZIL_PAYMENTS_ENABLED = "true";
   process.env.SITE_URL = "https://example.org";
 }
@@ -59,7 +60,7 @@ test("international one-time and monthly donations still create Stripe sessions"
 
 test("Brazilian checkout stays unavailable without flag or credentials", async () => {
   configureBrazil();
-  delete process.env.MERCADO_PAGO_ACCESS_TOKEN;
+  delete process.env.ASAAS_API_KEY;
   assert.equal((await call(brazilCheckout, donation)).status, 503);
   configureBrazil();
   process.env.VITE_BRAZIL_PAYMENTS_ENABLED = "false";
@@ -70,27 +71,43 @@ test("Brazilian checkout rejects other currencies, recurrence and invalid amount
   configureBrazil();
   for (const body of [
     { ...donation, currency: "usd" }, { ...donation, frequency: "monthly" },
-    ...[0, -1, 99, 100.5, 100_000_001, "5000", null].map(amount => ({ ...donation, amount })),
+    ...[0, -1, 99, 499, 100.5, 100_000_001, "5000", null].map(amount => ({ ...donation, amount })),
   ]) assert.equal((await call(brazilCheckout, body)).status, 400);
   assert.equal((await call(brazilCheckout, donation, "GET")).status, 405);
 });
 
-test("Mercado Pago receives BRL cents correctly without any Stripe credentials", async () => {
+test("Asaas receives BRL cents correctly without any Stripe credentials", async () => {
   configureBrazil();
   delete process.env.STRIPE_SECRET_KEY;
   let sent: Record<string, any> | undefined;
+  let headers: Record<string, string> | undefined;
   globalThis.fetch = (async (url, init) => {
-    assert.equal(url, "https://api.mercadopago.com/checkout/preferences");
+    assert.equal(url, "https://api.asaas.com/v3/paymentLinks");
     sent = JSON.parse(init?.body as string);
-    return new Response(JSON.stringify({ init_point: "https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=fixture" }));
+    headers = init?.headers as Record<string, string>;
+    return new Response(JSON.stringify({ url: "https://www.asaas.com/c/fixture" }));
   }) as typeof fetch;
   const result = await call(brazilCheckout, { ...donation, amount: 2599 });
   assert.equal(result.status, 200);
-  assert.equal(sent?.items[0].unit_price, 25.99);
-  assert.equal(sent?.items[0].currency_id, "BRL");
-  assert.equal(sent?.payment_methods.installments, 1);
-  assert.match(sent?.back_urls.success, /donation=review$/);
-  assert.equal(sent?.back_urls.success, sent?.back_urls.pending);
+  assert.equal(result.body.url, "https://www.asaas.com/c/fixture");
+  assert.equal(headers?.access_token, "fixture-token");
+  assert.equal(sent?.value, 25.99);
+  assert.equal(sent?.billingType, "CREDIT_CARD");
+  assert.equal(sent?.chargeType, "DETACHED");
+  assert.equal(sent?.callback.successUrl, "https://example.org/?donation=review");
+});
+
+test("Asaas defaults to the sandbox unless production is explicit", async () => {
+  configureBrazil();
+  delete process.env.ASAAS_ENVIRONMENT;
+  globalThis.fetch = (async (url) => {
+    assert.equal(url, "https://api-sandbox.asaas.com/v3/paymentLinks");
+    return new Response(JSON.stringify({ url: "https://sandbox.asaas.com/c/fixture" }));
+  }) as typeof fetch;
+  assert.equal((await call(brazilCheckout, donation)).status, 200);
+  // A production link returned in sandbox mode is unexpected.
+  globalThis.fetch = (async () => new Response(JSON.stringify({ url: "https://www.asaas.com/c/fixture" }))) as typeof fetch;
+  assert.equal((await call(brazilCheckout, donation)).status, 502);
 });
 
 test("Brazilian checkout rejects insecure return URL and untrusted checkout URL", async () => {
@@ -98,7 +115,7 @@ test("Brazilian checkout rejects insecure return URL and untrusted checkout URL"
   process.env.SITE_URL = "http://example.org";
   assert.equal((await call(brazilCheckout, donation)).status, 503);
   configureBrazil();
-  globalThis.fetch = (async () => new Response(JSON.stringify({ init_point: "https://attacker.example/" }))) as typeof fetch;
+  globalThis.fetch = (async () => new Response(JSON.stringify({ url: "https://attacker.example/" }))) as typeof fetch;
   assert.equal((await call(brazilCheckout, donation)).status, 502);
 });
 

@@ -55,9 +55,9 @@ Fontes: [Checkout Mercado Pago](https://www.mercadopago.com.br/ferramentas-para-
 [preços Asaas](https://www.asaas.com/precos-e-taxas),
 [documentos de associação Asaas](https://central.ajuda.asaas.com/hc/pt-br/articles/32091607871387-Quais-documentos-enviar-para-ativar-minha-conta-de-Associa%C3%A7%C3%A3o).
 
-Mercado Pago é minha preferência técnica para começar com checkout hospedado,
-com o repasse posterior ao BB autorizado pelo usuário. Não exige conta Mercado Pago do doador.
-Asaas faz mais sentido se a prioridade for gestão de cobranças. Nenhum prazo
+Decisão em 14/10/2026: o usuário escolheu o Asaas para doações em reais com
+cartão, com repasse posterior ao BB. O Pix direto na conta BB continua sendo a
+opção principal, sem tarifa de intermediador. Nenhum prazo
 publicitário garante a liberação dessa associação. Confirmar elegibilidade
 para doações e documentação conforme sua natureza jurídica.
 
@@ -72,9 +72,12 @@ passa a ser menor que 0,99% perto de R$ 201 por doação.
 - BRL inicia no Pix BB e não passa pelo Stripe. A chave antiga foi retirada.
 - `VITE_BB_PIX_KEY` vazia impede QR/cópia até receber uma chave confirmada.
 - USD/EUR/GBP mantêm Stripe único ou mensal. A API Stripe rejeita BRL.
-- O checkout Mercado Pago foi preparado em endpoint separado, mas permanece
-  desativado (`VITE_BRAZIL_PAYMENTS_ENABLED=false`). Não depende de Stripe.
-- Cartão BRL só aparece com a flag ativa; limita-se a doação única, uma parcela.
+- O checkout Asaas (link de pagamento, cartão de crédito) foi preparado em
+  endpoint separado, mas permanece desativado (`VITE_BRAZIL_PAYMENTS_ENABLED=false`).
+  Não depende de Stripe. Sem `ASAAS_ENVIRONMENT=production`, usa o sandbox.
+- Cartão BRL só aparece com a flag ativa; doação única, mínimo de R$ 5,00.
+- Sem chave Pix nem CNPJ confirmados, BRL mostra aviso "em breve" com WhatsApp,
+  em vez de dados incompletos.
 - Seu retorno ao site apenas orienta consultar o resultado no provedor, sem
   afirmar aprovação a partir de parâmetros da URL.
 - Traduções PT/EN/FR distinguem Pix manual de recorrência internacional.
@@ -91,17 +94,17 @@ A separação é por moeda escolhida, não IP, idioma ou nacionalidade do cartã
    Conferir banco/titular no app antes de disponibilizar. Não usar a chave antiga.
 2. Manter Vercel com raiz `web`, React/Vite, domínio e CMS Sanity. Manter Stripe,
    webhook e Resend para internacionais. Pix direto não exige servidor bancário.
-3. Se escolher Mercado Pago para cartões: criar/verificar conta da entidade,
-   confirmar repasse à conta BB, criar aplicação e configurar o token secreto
-   `MERCADO_PAGO_ACCESS_TOKEN` no servidor, `SITE_URL` HTTPS e a flag de ativação.
-   Testar em preview com contas/credenciais de teste antes de produção. Nunca
-   colocar token em `VITE_`. O provedor coleta CPF/cartão quando necessário.
+3. Asaas para cartões: criar/verificar conta da associação, cadastrar o domínio
+   do site (exigido para o redirecionamento após o pagamento), configurar
+   `ASAAS_API_KEY` no servidor, `SITE_URL` HTTPS e a flag de ativação. Testar
+   no sandbox antes de definir `ASAAS_ENVIRONMENT=production`. Nunca colocar a
+   chave em `VITE_`. O Asaas coleta CPF/cartão do doador.
 4. Conferir doações no extrato BB ou painel do intermediador. Não há webhook ou
    e-mail brasileiro nesta versão. Não prometer confirmação automática.
 
-Referências da implementação opcional:
-[API de preferências Mercado Pago](https://www.mercadopago.com.br/developers/pt/reference/online-payments/checkout-pro-preferences/create-preference/post),
-[configuração do checkout](https://www.mercadopago.com.br/developers/pt/docs/checkout-pro-preferences/create-payment-preference).
+Referências da implementação:
+[criar link de pagamentos Asaas](https://docs.asaas.com/reference/criar-um-link-de-pagamentos),
+[redirecionamento após o pagamento](https://docs.asaas.com/docs/redirecionamento-apos-o-pagamento).
 
 ## Automação futura
 

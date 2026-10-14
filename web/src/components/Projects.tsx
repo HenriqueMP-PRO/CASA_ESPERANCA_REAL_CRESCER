@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import ResponsiveImg from "./ResponsiveImg";
 import type { Lang, Project } from "../content/fallback";
 
 export default function Projects({ projects }: { projects: Project[] }) {
@@ -20,7 +21,12 @@ export default function Projects({ projects }: { projects: Project[] }) {
               (p.i18nKey ? t(`projects.items.${p.i18nKey}.description`) : "");
             return (
               <article className="project-card" key={p.id}>
-                <img src={p.image} alt={title} loading="lazy" />
+                <ResponsiveImg
+                  src={p.image}
+                  sizes="(max-width: 640px) 92vw, 360px"
+                  alt=""
+                  loading="lazy"
+                />
                 <div className="project-body">
                   <h3>{title}</h3>
                   <p>{description}</p>

@@ -12,6 +12,13 @@ imagens/  → Fotos originais (copiadas para web/public/images)
 texts/    → Textos originais da ONG
 ```
 
+### Fotos
+
+Ao adicionar ou trocar fotos em `web/public/images`, rode `npm run images`
+(dentro de `web/`). O script gera versões WebP em vários tamanhos e atualiza
+`web/src/content/image-variants.json`, usado pelo site para servir a foto do
+tamanho certo para cada tela. Fotos vindas do Sanity são redimensionadas pela CDN.
+
 ## Rodando localmente
 
 ```bash
@@ -42,8 +49,9 @@ vercel dev
 |---|---|
 | `VITE_BB_ACCOUNT_CNPJ` | CNPJ confirmado do titular para Pix manual por dados bancários |
 | `VITE_BB_PIX_KEY` | Chave Pix confirmada da conta BB; vazia até confirmação |
-| `VITE_BRAZIL_PAYMENTS_ENABLED` | `true` somente após validar Mercado Pago; padrão desativado |
-| `MERCADO_PAGO_ACCESS_TOKEN` | Credencial secreta da aplicação Mercado Pago |
+| `VITE_BRAZIL_PAYMENTS_ENABLED` | `true` somente após validar o Asaas; padrão desativado |
+| `ASAAS_API_KEY` | Chave de API do Asaas (Integrações → Chaves de API); só no servidor |
+| `ASAAS_ENVIRONMENT` | `production` para cobranças reais; qualquer outro valor usa o sandbox |
 | `STRIPE_SECRET_KEY` | [dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys) |
 | `STRIPE_WEBHOOK_SECRET` | Passo "Webhook do Stripe" abaixo |
 | `RESEND_API_KEY` | [resend.com/api-keys](https://resend.com/api-keys) |
@@ -90,26 +98,40 @@ associada ao PagSeguro, foi retirada. PagBank está fora do escopo.
    disponibilizar o recebimento. Com a variável vazia, não há QR Code ou cópia.
 
 O Pix é único e conferido manualmente no extrato; não há cobrança mensal,
-webhook ou e-mail automático. Não precisa de credenciais Stripe ou Mercado Pago.
+webhook ou e-mail automático. Não precisa de credenciais Stripe ou Asaas.
+
+Sem `VITE_BB_PIX_KEY` nem `VITE_BB_ACCOUNT_CNPJ` (e com o Asaas desativado), quem
+escolhe BRL vê um aviso de "em breve" com botão para o WhatsApp da ONG. Só com o
+CNPJ, o site mostra agência/conta com botões de copiar para Pix por dados bancários.
 Não se promete isenção de tarifa PJ do BB sem verificar o contrato da conta.
 
-### Cartão brasileiro opcional — preparado, desativado
+### Cartão brasileiro via Asaas — preparado, desativado
 
-O endpoint `/api/create-br-checkout` prepara um checkout Mercado Pago em BRL,
-único e em uma parcela. O usuário aceitou intermediação e posterior repasse ao
-BB; não é crédito direto nesta conta a cada doação. Ainda não foi ativado.
+O endpoint `/api/create-br-checkout` cria um link de pagamento Asaas
+(`POST /v3/paymentLinks`) para cartão de crédito, em BRL, doação única, valor
+mínimo de R$ 5,00 (limite do Asaas). O dinheiro fica no saldo Asaas e é
+transferido depois para a conta BB; não é crédito direto no BB a cada doação.
 
-Se esse modelo for escolhido, verificar a conta da associação, criar aplicação
-no Mercado Pago, configurar `MERCADO_PAGO_ACCESS_TOKEN` só no servidor,
-`SITE_URL` HTTPS e `VITE_BRAZIL_PAYMENTS_ENABLED=true`, e fazer redeploy.
-Validar primeiro com credenciais/contas de teste. Nunca expor o token em `VITE_`.
-Sem habilitação, a opção cartão BRL fica oculta e o endpoint retorna 503.
+Para ativar:
 
-A conferência desse checkout também é manual, no painel Mercado Pago. Não há
-webhook, e-mail Resend ou recorrência brasileiros nesta versão. O retorno ao
-site orienta consultar o provedor e não confirma pagamento.
+1. Abrir e aprovar a conta da associação no Asaas (diretoria, estatuto e ata
+   de eleição registrados; análise de alguns dias úteis).
+2. Cadastrar o domínio do site em Configurações da conta → Informações. O Asaas
+   só redireciona o doador de volta para URLs desse domínio.
+3. Testar no sandbox: criar conta em sandbox.asaas.com, gerar a chave e
+   configurar `ASAAS_API_KEY` (sem `ASAAS_ENVIRONMENT`), `SITE_URL` HTTPS e
+   `VITE_BRAZIL_PAYMENTS_ENABLED=true` num deploy de preview.
+4. Em produção, trocar a chave pela de produção, definir
+   `ASAAS_ENVIRONMENT=production` e fazer redeploy. Nunca expor a chave em `VITE_`.
 
-A separação é por moeda selecionada, não IP/idioma/nacionalidade do cartão.
+Sem habilitação, a opção cartão BRL fica oculta e o endpoint retorna 503. As
+notificações do Asaas ao doador ficam desligadas (`notificationEnabled: false`)
+para evitar tarifas de notificação. A conferência é manual, no painel Asaas: não
+há webhook, e-mail Resend ou recorrência brasileiros nesta versão. O retorno ao
+site agradece, mas não confirma o pagamento.
+
+A moeda inicial segue o idioma do site (PT → BRL, FR → EUR, demais → USD); o
+doador pode trocar. O provedor é escolhido pela moeda, não por IP ou cartão.
 Assinaturas antigas em BRL no Stripe não são canceladas automaticamente.
 Veja a [comparação de provedores e plano de setup](docs/pagamentos-brasil.md).
 

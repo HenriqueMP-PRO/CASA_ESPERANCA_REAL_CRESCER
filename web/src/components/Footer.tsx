@@ -11,6 +11,9 @@ export default function Footer({ orgName }: { orgName: string }) {
           <span>{orgName}</span>
         </a>
         <p>{t("footer.tagline")}</p>
+        <a href="#doar" className="btn btn-primary">
+          {t("nav.donate")}
+        </a>
         <p>
           © {new Date().getFullYear()} {orgName}. {t("footer.rights")}
         </p>

@@ -26,7 +26,8 @@ const query = /* groq */ `{
   },
   "gallery": *[_type == "galleryImage"] | order(order asc){
     "src": image.asset->url,
-    tall
+    tall,
+    caption
   }
 }`;
 

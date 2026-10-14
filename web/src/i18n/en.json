@@ -5,16 +5,18 @@
     "founder": "Founder",
     "gallery": "Gallery",
     "contact": "Contact",
-    "donate": "Donate"
+    "donate": "Donate",
+    "language": "Language",
+    "menu": "Menu"
   },
   "hero": {
-    "title": "Together we can make a <1>difference</1>!",
-    "subtitle": "Casa Esperança Real Crescer welcomes refugees and families in need in Brazil and brings hope to pygmy communities in Congo since 2010.",
+    "title": "Welcome in Rio, <1>hope</1> in Congo",
+    "subtitle": "Since 2010, Casa Esperança Real Crescer has been welcoming refugees and vulnerable families in Rio de Janeiro and bringing food, shelter and hope to the Indigenous pygmy peoples of Congo.",
     "cta_donate": "Make a donation",
     "cta_learn": "See our work"
   },
   "stats": {
-    "years": "years of mission",
+    "years": "years of the founder's mission",
     "communities": "communities served",
     "countries": "countries reached",
     "since": "NGO founded in"
@@ -22,11 +24,12 @@
   "about": {
     "tag": "Our Story",
     "title": "A mission born from welcoming others",
-    "p1": "It all began with Pastor Leonardo (Laza Ndosi), a missionary since 1998, who arrived in Brazil in 2003. In Rio de Janeiro, he found African communities in Brás de Pina, Caxias, Gramacho and downtown, and began helping refugees as an interpreter at Caritas and the Federal Police, where he also taught Portuguese for several years.",
-    "p2": "In 2010, with the help of his friend Pastor Marcos Fernandes, Casa Esperança Real Crescer was born: an NGO dedicated to helping people in need in local communities, welcoming foreigners who arrive without family, and supporting pygmy villages in Africa.",
+    "p1": "It all began with Pastor Leonardo (Laza Ndosi), a missionary since 1998, who arrived in Brazil in 2003. In Rio de Janeiro, he found African communities in Brás de Pina, Caxias, Gramacho and downtown. He then began helping refugees as an interpreter at Caritas and the Federal Police, where he also taught Portuguese for several years.",
+    "p2": "In 2010, with the help of his friend Pastor Marcos Fernandes, Casa Esperança Real Crescer was born: an NGO dedicated to helping people in need in local communities, welcoming foreigners who arrive without family, and supporting the villages of Indigenous pygmy peoples in Africa.",
     "p3": "Distribution of food baskets, free haircut and braiding days, mental health support and free dental care are some of the actions we carry out to this day.",
     "badge_number": "2010",
-    "badge_label": "since"
+    "badge_label": "since",
+    "image_alt": "Community gathered under a thatched shelter in a village"
   },
   "projects": {
     "tag": "Our Projects",
@@ -34,8 +37,8 @@
     "subtitle": "From Rio de Janeiro to the villages of Congo, our projects bring dignity, food and hope.",
     "items": {
       "congo": {
-        "title": "Mission in pygmy villages",
-        "description": "Supporting pygmy communities in Congo with food, building materials and assistance to village families."
+        "title": "Mission with Indigenous pygmy peoples",
+        "description": "Supporting the villages of Indigenous pygmy peoples in Congo with food, building materials and assistance to families."
       },
       "housing": {
         "title": "Decent housing",
@@ -55,23 +58,39 @@
     "tag": "Meet our founder",
     "title": "Pastor Leonardo",
     "quote": "With the help of God, kind-hearted people, companies and public institutions, we will continue our mission.",
-    "p1": "Laza Ndosi, known as Pastor Leonardo, has been a missionary since 1998, dedicated to God's work and social causes. In 2009 he started the Betesda International vision, a church to welcome foreigners and teach the word of God.",
+    "p1": "Laza Ndosi, known as Pastor Leonardo, has been a missionary since 1998, devoting his life to God's work and to social action. In 2009 he founded Betesda International, a church that welcomes foreigners and teaches the word of God.",
     "p2": "To this day we continue to welcome people, guide them and do social work, with many ongoing projects in Brazil and Africa."
   },
   "gallery": {
     "tag": "Gallery",
     "title": "See our work in action",
-    "subtitle": "Snapshots from our missions in the villages of Congo and our actions in Brazil."
+    "subtitle": "Snapshots of our missions and community work. Tap a photo to enlarge it.",
+    "open": "Enlarge photo",
+    "close": "Close",
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "counter": "{{current}} of {{total}}",
+    "captions": {
+      "img003": "Children and families gathered in front of a brick house in the village",
+      "img004": "Young people dancing in celebration inside a brick building",
+      "img006": "Villagers in front of a house with a thatched roof",
+      "img007": "A large group gathered under a palm-leaf shelter, holding books",
+      "img008": "Community gathered outdoors, many holding books",
+      "img009": "Villagers lined up with new bicycles",
+      "img011": "New bicycles lined up on the grass, with a man standing arms wide open in the middle",
+      "img013": "A villager carries woven palm-leaf roofing on a bicycle",
+      "img014": "Women and children dancing under a thatched shelter"
+    }
   },
   "donate": {
     "tag": "Donate now",
     "title": "Your donation changes lives",
     "p1": "Every contribution becomes food, building materials, shelter and hope for those who need it most, in Brazil and in Congo.",
     "features": {
-      "secure": "Direct Pix to Banco do Brasil; international payments via Stripe",
-      "international": "We accept cards from anywhere in the world, in multiple currencies",
-      "recurring": "Monthly card donations available in USD, EUR and GBP",
-      "receipt": "Receipts from the payment provider; thank-you emails for Stripe donations"
+      "secure": "In Brazil, Pix straight to the institution's Banco do Brasil account",
+      "international": "Donate from any country by card, in dollars, euros or pounds",
+      "recurring": "Monthly giving available for international donors",
+      "receipt": "Payments processed by secure platforms, with an instant receipt"
     },
     "card_title": "Choose your donation amount",
     "frequency": "Frequency",
@@ -80,35 +99,35 @@
     "currency": "Currency",
     "payment_method": "Payment method",
     "pix": "Pix",
-    "card": "Card",
+    "card": "Credit card",
     "amount": "Amount",
     "custom_placeholder": "Custom amount",
     "button": "Donate {{amount}}",
     "button_empty": "Donate",
     "processing": "Processing...",
-    "secure_note": "Secure donation via Stripe — credit and debit cards",
-    "pix_secure_note": "Pix directly to Banco do Brasil — check the receiver before confirming",
+    "secure_note": "Secure payment via Stripe — credit and debit cards",
+    "pix_secure_note": "Pix straight to the institution's Banco do Brasil account",
     "pix_qr_alt": "Pix QR Code for donation",
     "pix_receiver": "Receiver",
     "pix_bank": "Bank",
     "pix_key": "Pix key",
-    "pix_copy_key": "Copy Pix key",
     "pix_copy_code": "Copy Pix code",
     "pix_copied": "Copied!",
     "pix_code_label": "Pix copy-and-paste code",
     "error_generic": "We couldn't start your donation. Please try again shortly.",
     "error_amount": "Please enter a valid donation amount.",
     "error_copy_pix": "We couldn't copy the Pix code. Please copy the displayed key or code manually.",
-    "brazil_note": "One-time donation in BRL. Choose Pix or card at Mercado Pago checkout.",
-    "brazil_unavailable": "We are setting up Brazilian payments. Pix and card donations in BRL will be available soon.",
-    "brazil_secure_note": "BRL payment through Mercado Pago secure checkout",
-    "pix_unavailable": "Banco do Brasil Pix key awaiting confirmation",
+    "brazil_unavailable": "Donations in BRL will be available soon. In the meantime, message us on WhatsApp to find out how to help.",
+    "brazil_secure_note": "Card payment through Asaas secure checkout",
     "bank_agency": "Branch",
     "bank_account": "Account",
     "bank_current": "Current account",
-    "pix_manual_note": "Pix is a one-time donation, checked by the institution in its bank statement. Keep your bank receipt; there is no monthly charge or automatic email.",
-    "bank_cnpj_pending": "Awaiting confirmation from the institution",
-    "bank_manual_note": "You can send Pix using bank details in your banking app: bank, branch, current account and the account holder’s CNPJ. Use this option only once the CNPJ is confirmed here. The account number is not a Pix key."
+    "pix_manual_note": "Check the receiver's name before confirming. Keep your receipt: if you'd like a thank-you, send it to us by email or WhatsApp.",
+    "bank_manual_note": "In your banking app, choose Pix → Branch and account (or \"bank details\"), then enter the details below and the amount you wish to give.",
+    "copy": "Copy",
+    "pix_qr_instructions": "Open your banking app, choose Pix → Pay with QR Code and point your camera. On a phone, use the button below to copy the code.",
+    "whatsapp_message": "Hello! I would like to make a donation to Casa Esperança Real Crescer.",
+    "error_card_min": "The minimum card donation in BRL is R$ 5.00."
   },
   "success": {
     "title": "Thank you so much!",
@@ -126,15 +145,17 @@
     "address_title": "Address",
     "phone_title": "Phones",
     "email_title": "Email",
-    "org_title": "Organization"
+    "org_title": "Organization",
+    "whatsapp_cta": "Chat on WhatsApp",
+    "map_cta": "View on map"
   },
   "footer": {
     "rights": "All rights reserved.",
     "tagline": "Together we can make a difference."
   },
   "review": {
-    "title": "Check your payment",
-    "message": "Check the result in Mercado Pago or your bank receipt. Returning to this site does not confirm receipt; the institution checks donations with the payment provider.",
+    "title": "Thank you for giving!",
+    "message": "If the payment went through, keep the receipt shown by the payment platform. Final confirmation comes from the platform; returning to this site does not confirm receipt.",
     "close": "Close"
   }
 }

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { chooseLanguage } from "../i18n";
 
 const LANGS = [
-  { code: "pt", label: "PT" },
-  { code: "en", label: "EN" },
-  { code: "fr", label: "FR" },
+  { code: "pt", label: "PT", name: "Português" },
+  { code: "en", label: "EN", name: "English" },
+  { code: "fr", label: "FR", name: "Français" },
 ] as const;
 
 const LINKS = [
@@ -39,6 +40,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
   const currentLang = i18n.resolvedLanguage ?? "pt";
 
   return (
@@ -49,22 +59,30 @@ export default function Header() {
           <span>Casa Esperança Real Crescer</span>
         </a>
 
-        <nav className={`nav${open ? " open" : ""}`}>
+        <nav id="site-nav" className={`nav${open ? " open" : ""}`} aria-label={t("nav.menu")}>
           {LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
               {t(l.key)}
             </a>
           ))}
-          <div className="lang-switch" role="group" aria-label="Language">
-            {LANGS.map((l) => (
-              <button
-                key={l.code}
-                className={currentLang.startsWith(l.code) ? "active" : ""}
-                onClick={() => i18n.changeLanguage(l.code)}
-              >
-                {l.label}
-              </button>
-            ))}
+          <div className="lang-switch" role="group" aria-label={t("nav.language")}>
+            {LANGS.map((l) => {
+              const active = currentLang.startsWith(l.code);
+              return (
+                <button
+                  key={l.code}
+                  type="button"
+                  lang={l.code}
+                  className={active ? "active" : ""}
+                  aria-pressed={active}
+                  aria-label={l.name}
+                  title={l.name}
+                  onClick={() => chooseLanguage(l.code)}
+                >
+                  {l.label}
+                </button>
+              );
+            })}
           </div>
           <a href="#doar" className="btn btn-primary" onClick={() => setOpen(false)}>
             {t("nav.donate")}
@@ -73,7 +91,9 @@ export default function Header() {
 
         <button
           className={`menu-toggle${open ? " open" : ""}`}
-          aria-label="Menu"
+          type="button"
+          aria-label={t("nav.menu")}
+          aria-controls="site-nav"
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >

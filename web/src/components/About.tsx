@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import ResponsiveImg from "./ResponsiveImg";
 
 export default function About({ image }: { image: string }) {
   const { t } = useTranslation();
@@ -6,7 +7,12 @@ export default function About({ image }: { image: string }) {
     <section className="section" id="historia">
       <div className="container about-grid">
         <div className="about-image">
-          <img src={image} alt={t("about.title")} loading="lazy" />
+          <ResponsiveImg
+            src={image}
+            sizes="(max-width: 900px) 92vw, 540px"
+            alt={t("about.image_alt")}
+            loading="lazy"
+          />
           <div className="about-badge">
             {t("about.badge_label")}
             <span>{t("about.badge_number")}</span>
