@@ -1,6 +1,6 @@
 # Casa Esperança Real Crescer — Landing Page
 
-Landing page responsiva e multilíngue (PT/EN/FR) com doações internacionais via Stripe,
+Landing page responsiva e multilíngue (PT/EN/FR) com doações em BRL via Pix no Banco do Brasil e internacionais via Stripe,
 e-mail de agradecimento via Resend e conteúdo editável via Sanity CMS.
 
 ## Estrutura
@@ -40,6 +40,10 @@ vercel dev
 
 | Variável | Onde obter |
 |---|---|
+| `VITE_BB_ACCOUNT_CNPJ` | CNPJ confirmado do titular para Pix manual por dados bancários |
+| `VITE_BB_PIX_KEY` | Chave Pix confirmada da conta BB; vazia até confirmação |
+| `VITE_BRAZIL_PAYMENTS_ENABLED` | `true` somente após validar Mercado Pago; padrão desativado |
+| `MERCADO_PAGO_ACCESS_TOKEN` | Credencial secreta da aplicação Mercado Pago |
 | `STRIPE_SECRET_KEY` | [dashboard.stripe.com/apikeys](https://dashboard.stripe.com/apikeys) |
 | `STRIPE_WEBHOOK_SECRET` | Passo "Webhook do Stripe" abaixo |
 | `RESEND_API_KEY` | [resend.com/api-keys](https://resend.com/api-keys) |
@@ -54,8 +58,13 @@ vercel dev
 
 ## Configurando o Stripe
 
-1. Crie a conta em [stripe.com](https://stripe.com) com o CNPJ da ONG
-   (09.563.258/0001-70) e complete a verificação.
+O Stripe atende exclusivamente USD, EUR e GBP, com doação única ou mensal.
+A API rejeita BRL, inclusive quando chamada diretamente. O pacote `stripe`
+continua necessário para os pagamentos internacionais e seus webhooks.
+
+1. Use a conta Stripe da ONG, com o CNPJ confirmado da entidade, e complete a
+   verificação. Há divergência de CNPJ no documento bancário fornecido; não use
+   esse documento para alterar o cadastro sem confirmação.
 2. Copie a chave secreta (`sk_live_...`) para `STRIPE_SECRET_KEY`.
 3. **Webhook do e-mail de obrigado**: em
    [Developers → Webhooks](https://dashboard.stripe.com/webhooks), crie um endpoint:
@@ -65,17 +74,44 @@ vercel dev
 Use as chaves de teste (`sk_test_...`) primeiro e faça uma doação com o cartão
 de teste `4242 4242 4242 4242` para validar o fluxo completo.
 
-## Configurando o Pix direto
+## Configurando o Pix no Banco do Brasil
 
-O Pix em BRL não passa pelo Stripe. O site exibe QR Code e código copia e cola
-para a chave Pix da instituição:
+O Banco do Brasil é o banco indicado pela instituição: agência 3101-1, conta
+corrente 3395-2, titular CASA DA ESPERANCA REAL CRESCER. A chave Pix anterior,
+associada ao PagSeguro, foi retirada. PagBank está fora do escopo.
 
-- Chave Pix: `09.563.258/0001-70`
-- Recebedor: `Casa Esperança Real - Crescer`
-- Banco: `Pageseguro Internet IP S.A.`
+1. Confirme a chave Pix cadastrada nessa conta e configure `VITE_BB_PIX_KEY`.
+   O PDF fornecido não contém chave Pix e seu CNPJ diverge do cadastro do site;
+   não se presume que CNPJ, e-mail ou número da conta sejam uma chave válida.
+2. Para Pix manual por dados bancários, confirmar e configurar
+   `VITE_BB_ACCOUNT_CNPJ`. Agência/conta não são uma chave Pix.
+3. Faça redeploy, pois as variáveis públicas são incorporadas no build.
+4. Confira o QR Code no aplicativo bancário e valide banco/titular antes de
+   disponibilizar o recebimento. Com a variável vazia, não há QR Code ou cópia.
 
-Antes de publicar, confirme no aplicativo bancário que a chave aponta para a
-conta PJ correta da instituição.
+O Pix é único e conferido manualmente no extrato; não há cobrança mensal,
+webhook ou e-mail automático. Não precisa de credenciais Stripe ou Mercado Pago.
+Não se promete isenção de tarifa PJ do BB sem verificar o contrato da conta.
+
+### Cartão brasileiro opcional — preparado, desativado
+
+O endpoint `/api/create-br-checkout` prepara um checkout Mercado Pago em BRL,
+único e em uma parcela. O usuário aceitou intermediação e posterior repasse ao
+BB; não é crédito direto nesta conta a cada doação. Ainda não foi ativado.
+
+Se esse modelo for escolhido, verificar a conta da associação, criar aplicação
+no Mercado Pago, configurar `MERCADO_PAGO_ACCESS_TOKEN` só no servidor,
+`SITE_URL` HTTPS e `VITE_BRAZIL_PAYMENTS_ENABLED=true`, e fazer redeploy.
+Validar primeiro com credenciais/contas de teste. Nunca expor o token em `VITE_`.
+Sem habilitação, a opção cartão BRL fica oculta e o endpoint retorna 503.
+
+A conferência desse checkout também é manual, no painel Mercado Pago. Não há
+webhook, e-mail Resend ou recorrência brasileiros nesta versão. O retorno ao
+site orienta consultar o provedor e não confirma pagamento.
+
+A separação é por moeda selecionada, não IP/idioma/nacionalidade do cartão.
+Assinaturas antigas em BRL no Stripe não são canceladas automaticamente.
+Veja a [comparação de provedores e plano de setup](docs/pagamentos-brasil.md).
 
 ## Configurando o Resend (e-mail de obrigado)
 
@@ -112,3 +148,11 @@ Para permitir que pessoas não-técnicas editem projetos, fotos e contatos:
 
 As traduções ficam em `web/src/i18n/{pt,en,fr}.json`. O idioma é detectado pelo
 navegador e pode ser trocado no menu (persistido em localStorage).
+
+## Validação das alterações de pagamento
+
+No diretório `web`, execute `npm run build`, `npm run lint` e `npm test`
+(Node 22.23 ou compatível com remoção nativa de tipos TypeScript). O build
+inclui a checagem das funções em `api/`. Os sete testes usam respostas simuladas
+dos provedores, sem criar pagamentos, e cobrem separação de moedas, recorrência
+internacional, configuração ausente, valores inválidos e falhas do checkout.

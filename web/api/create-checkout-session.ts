@@ -1,16 +1,16 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import Stripe from "stripe";
 
-const ALLOWED_CURRENCIES = new Set(["brl", "usd", "eur", "gbp"]);
+// BRL donations use the institution's direct Pix flow, never Stripe.
+const ALLOWED_CURRENCIES = new Set(["usd", "eur", "gbp"]);
 const STRIPE_LOCALES: Record<string, Stripe.Checkout.SessionCreateParams.Locale> = {
   pt: "pt-BR",
   en: "en",
   fr: "fr",
 };
 
-// Minimum charge amounts required by Stripe, in cents.
+// Site minimum donation amounts, in cents.
 const MIN_AMOUNT: Record<string, number> = {
-  brl: 300,
   usd: 100,
   eur: 100,
   gbp: 100,
@@ -19,12 +19,6 @@ const MIN_AMOUNT: Record<string, number> = {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
-  }
-
-  const secretKey = process.env.STRIPE_SECRET_KEY;
-  if (!secretKey) {
-    console.error("STRIPE_SECRET_KEY is not configured");
-    return res.status(500).json({ error: "Payment is not configured" });
   }
 
   const { amount, currency, frequency, locale } = req.body ?? {};
@@ -40,6 +34,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (amount < (MIN_AMOUNT[currency] ?? 100) || amount > 100_000_000) {
     return res.status(400).json({ error: "Amount out of range" });
+  }
+
+  if (frequency !== "once" && frequency !== "monthly") {
+    return res.status(400).json({ error: "Invalid frequency" });
+  }
+
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+  if (!secretKey) {
+    console.error("STRIPE_SECRET_KEY is not configured");
+    return res.status(500).json({ error: "Payment is not configured" });
   }
 
   const isMonthly = frequency === "monthly";

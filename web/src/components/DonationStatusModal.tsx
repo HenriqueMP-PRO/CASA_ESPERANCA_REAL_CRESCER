@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-type Status = "success" | "canceled" | null;
+type Status = "success" | "canceled" | "review" | null;
 
 export default function DonationStatusModal() {
   const { t } = useTranslation();
@@ -10,7 +10,7 @@ export default function DonationStatusModal() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const donation = params.get("donation");
-    if (donation === "success" || donation === "canceled") {
+    if (donation === "success" || donation === "canceled" || donation === "review") {
       setStatus(donation);
       // Clean the URL so refresh doesn't reopen the modal
       const url = new URL(window.location.href);
@@ -26,10 +26,10 @@ export default function DonationStatusModal() {
     <div className="modal-overlay" onClick={() => setStatus(null)} role="dialog" aria-modal="true">
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="icon">{isSuccess ? "💚" : "🙏"}</div>
-        <h3>{t(isSuccess ? "success.title" : "canceled.title")}</h3>
-        <p>{t(isSuccess ? "success.message" : "canceled.message")}</p>
+        <h3>{t(`${status}.title`)}</h3>
+        <p>{t(`${status}.message`)}</p>
         <button className="btn btn-primary" onClick={() => setStatus(null)}>
-          {t(isSuccess ? "success.close" : "canceled.close")}
+          {t(`${status}.close`)}
         </button>
       </div>
     </div>

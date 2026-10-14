@@ -68,10 +68,10 @@
     "title": "Votre don transforme des vies",
     "p1": "Chaque contribution devient nourriture, matériaux de construction, accueil et espoir pour ceux qui en ont le plus besoin, au Brésil et au Congo.",
     "features": {
-      "secure": "Pix direct vers l'institution ou paiement par carte traité par Stripe",
+      "secure": "Pix directement à Banco do Brasil ; paiements internationaux via Stripe",
       "international": "Nous acceptons les cartes du monde entier, en plusieurs devises",
-      "recurring": "Option de don mensuel pour un soutien continu",
-      "receipt": "Vous recevez un reçu et un e-mail de remerciement"
+      "recurring": "Dons mensuels par carte disponibles en USD, EUR et GBP",
+      "receipt": "Reçus du prestataire de paiement ; remerciements par e-mail pour les dons via Stripe"
     },
     "card_title": "Choisissez le montant de votre don",
     "frequency": "Fréquence",
@@ -87,7 +87,7 @@
     "button_empty": "Donner",
     "processing": "Traitement...",
     "secure_note": "Don sécurisé via Stripe — cartes de crédit et de débit",
-    "pix_secure_note": "Le Pix va directement au compte de l'institution — vérifiez le nom du bénéficiaire avant de confirmer",
+    "pix_secure_note": "Pix directement à Banco do Brasil — vérifiez le bénéficiaire avant de confirmer",
     "pix_qr_alt": "QR Code Pix pour le don",
     "pix_receiver": "Bénéficiaire",
     "pix_bank": "Banque",
@@ -98,7 +98,17 @@
     "pix_code_label": "Code Pix copier-coller",
     "error_generic": "Impossible de démarrer votre don. Veuillez réessayer dans quelques instants.",
     "error_amount": "Veuillez saisir un montant valide.",
-    "error_copy_pix": "Impossible de copier le code Pix. Veuillez copier manuellement la clé ou le code affiché."
+    "error_copy_pix": "Impossible de copier le code Pix. Veuillez copier manuellement la clé ou le code affiché.",
+    "brazil_note": "Don ponctuel en BRL. Choisissez Pix ou carte sur Mercado Pago.",
+    "brazil_unavailable": "Nous préparons les paiements au Brésil. Les dons en BRL par Pix ou carte seront bientôt disponibles.",
+    "brazil_secure_note": "Paiement en BRL sur la page sécurisée de Mercado Pago",
+    "pix_unavailable": "Clé Pix Banco do Brasil en attente de confirmation",
+    "bank_agency": "Agence",
+    "bank_account": "Compte",
+    "bank_current": "Compte courant",
+    "pix_manual_note": "Pix est un don ponctuel, vérifié par l’institution sur son relevé bancaire. Conservez votre reçu ; aucun prélèvement mensuel ni e-mail automatique.",
+    "bank_cnpj_pending": "En attente de confirmation par l’institution",
+    "bank_manual_note": "Vous pouvez envoyer un Pix avec les coordonnées bancaires dans votre application : banque, agence, compte courant et CNPJ du titulaire. Utilisez cette option seulement après confirmation du CNPJ ici. Le numéro de compte n’est pas une clé Pix."
   },
   "success": {
     "title": "Merci beaucoup !",
@@ -121,5 +131,10 @@
   "footer": {
     "rights": "Tous droits réservés.",
     "tagline": "Ensemble, nous pouvons faire la différence."
+  },
+  "review": {
+    "title": "Vérifiez votre paiement",
+    "message": "Consultez le résultat sur Mercado Pago ou votre reçu bancaire. Le retour sur ce site ne confirme pas la réception ; l’institution vérifie les dons auprès du prestataire.",
+    "close": "Fermer"
   }
 }

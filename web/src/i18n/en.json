@@ -68,10 +68,10 @@
     "title": "Your donation changes lives",
     "p1": "Every contribution becomes food, building materials, shelter and hope for those who need it most, in Brazil and in Congo.",
     "features": {
-      "secure": "Direct Pix to the institution or card payment processed by Stripe",
+      "secure": "Direct Pix to Banco do Brasil; international payments via Stripe",
       "international": "We accept cards from anywhere in the world, in multiple currencies",
-      "recurring": "Monthly giving option for ongoing support",
-      "receipt": "You receive a receipt and a thank-you email"
+      "recurring": "Monthly card donations available in USD, EUR and GBP",
+      "receipt": "Receipts from the payment provider; thank-you emails for Stripe donations"
     },
     "card_title": "Choose your donation amount",
     "frequency": "Frequency",
@@ -87,7 +87,7 @@
     "button_empty": "Donate",
     "processing": "Processing...",
     "secure_note": "Secure donation via Stripe — credit and debit cards",
-    "pix_secure_note": "Pix goes directly to the institution account — check the receiver name before confirming",
+    "pix_secure_note": "Pix directly to Banco do Brasil — check the receiver before confirming",
     "pix_qr_alt": "Pix QR Code for donation",
     "pix_receiver": "Receiver",
     "pix_bank": "Bank",
@@ -98,7 +98,17 @@
     "pix_code_label": "Pix copy-and-paste code",
     "error_generic": "We couldn't start your donation. Please try again shortly.",
     "error_amount": "Please enter a valid donation amount.",
-    "error_copy_pix": "We couldn't copy the Pix code. Please copy the displayed key or code manually."
+    "error_copy_pix": "We couldn't copy the Pix code. Please copy the displayed key or code manually.",
+    "brazil_note": "One-time donation in BRL. Choose Pix or card at Mercado Pago checkout.",
+    "brazil_unavailable": "We are setting up Brazilian payments. Pix and card donations in BRL will be available soon.",
+    "brazil_secure_note": "BRL payment through Mercado Pago secure checkout",
+    "pix_unavailable": "Banco do Brasil Pix key awaiting confirmation",
+    "bank_agency": "Branch",
+    "bank_account": "Account",
+    "bank_current": "Current account",
+    "pix_manual_note": "Pix is a one-time donation, checked by the institution in its bank statement. Keep your bank receipt; there is no monthly charge or automatic email.",
+    "bank_cnpj_pending": "Awaiting confirmation from the institution",
+    "bank_manual_note": "You can send Pix using bank details in your banking app: bank, branch, current account and the account holder’s CNPJ. Use this option only once the CNPJ is confirmed here. The account number is not a Pix key."
   },
   "success": {
     "title": "Thank you so much!",
@@ -121,5 +131,10 @@
   "footer": {
     "rights": "All rights reserved.",
     "tagline": "Together we can make a difference."
+  },
+  "review": {
+    "title": "Check your payment",
+    "message": "Check the result in Mercado Pago or your bank receipt. Returning to this site does not confirm receipt; the institution checks donations with the payment provider.",
+    "close": "Close"
   }
 }

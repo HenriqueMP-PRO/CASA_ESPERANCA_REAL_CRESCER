@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "node --experimental-strip-types tests/payment-routing.test.ts"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

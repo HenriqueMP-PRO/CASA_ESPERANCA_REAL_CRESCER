@@ -7,10 +7,12 @@ type Currency = "brl" | "usd" | "eur" | "gbp";
 type Frequency = "once" | "monthly";
 type PaymentMethod = "pix" | "card";
 
-const PIX_KEY = "09563258000170";
-const PIX_KEY_DISPLAY = "09.563.258/0001-70";
-const PIX_RECEIVER = "Casa Esperança Real - Crescer";
-const PIX_BANK = "Pageseguro Internet IP S.A.";
+const PIX_KEY = (import.meta.env.VITE_BB_PIX_KEY ?? "").trim();
+const BRAZIL_CARD_ENABLED = import.meta.env.VITE_BRAZIL_PAYMENTS_ENABLED === "true";
+const PIX_KEY_DISPLAY = PIX_KEY;
+const BB_ACCOUNT_CNPJ = (import.meta.env.VITE_BB_ACCOUNT_CNPJ ?? "").trim();
+const PIX_RECEIVER = "CASA DA ESPERANCA REAL CRESCER";
+const PIX_BANK = "Banco do Brasil S.A.";
 const PIX_CITY = "Rio de Janeiro";
 
 const PRESETS: Record<Currency, number[]> = {
@@ -31,7 +33,7 @@ export default function Donate() {
   const { t, i18n } = useTranslation();
   const [currency, setCurrency] = useState<Currency>("brl");
   const [frequency, setFrequency] = useState<Frequency>("once");
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("card");
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>("pix");
   const [preset, setPreset] = useState<number | null>(50);
   const [custom, setCustom] = useState("");
   const [loading, setLoading] = useState(false);
@@ -42,7 +44,8 @@ export default function Donate() {
   const amount = useMemo(() => {
     if (custom.trim() !== "") {
       const parsed = Number(custom.replace(",", "."));
-      return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+      return Number.isFinite(parsed) && parsed >= 1 && parsed <= 1_000_000
+        && Math.abs(parsed * 100 - Math.round(parsed * 100)) < 0.000001 ? parsed : null;
     }
     return preset;
   }, [custom, preset]);
@@ -59,14 +62,17 @@ export default function Donate() {
     setCurrency(c);
     setPreset(PRESETS[c][1]);
     setCustom("");
-    setPaymentMethod("card");
+    setPaymentMethod("pix");
+    setError(null);
+    setCopiedPix(null);
     setFrequency("once");
   };
 
-  const isPix = currency === "brl" && paymentMethod === "pix";
+  const isBrazil = currency === "brl";
+  const isPix = isBrazil && paymentMethod === "pix";
 
   const pixPayload = useMemo(() => {
-    if (!isPix || !amount) return "";
+    if (!isPix || !amount || !PIX_KEY) return "";
 
     return buildPixPayload({
       key: PIX_KEY,
@@ -131,15 +137,19 @@ export default function Donate() {
       }
       return;
     }
+    if (isBrazil && !BRAZIL_CARD_ENABLED) {
+      setError(t("donate.brazil_unavailable"));
+      return;
+    }
     setLoading(true);
     try {
-      const res = await fetch("/api/create-checkout-session", {
+      const res = await fetch(isBrazil ? "/api/create-br-checkout" : "/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount: Math.round(amount * 100),
           currency,
-          frequency,
+          frequency: isBrazil ? "once" : frequency,
           locale: i18n.resolvedLanguage?.slice(0, 2) ?? "pt",
         }),
       });
@@ -198,17 +208,17 @@ export default function Donate() {
                 >
                   {t("donate.pix")}
                 </button>
-                <button
+                {BRAZIL_CARD_ENABLED && <button
                   className={`chip${paymentMethod === "card" ? " active" : ""}`}
                   onClick={() => setPaymentMethod("card")}
                 >
                   {t("donate.card")}
-                </button>
+                </button>}
               </div>
             </>
           )}
 
-          {!isPix && (
+          {!isBrazil && (
             <>
               <span className="field-label">{t("donate.frequency")}</span>
               <div className="freq-toggle">
@@ -278,15 +288,28 @@ export default function Donate() {
                   <dd>{PIX_BANK}</dd>
                 </div>
                 <div>
+                  <dt>{t("donate.bank_agency")}</dt>
+                  <dd>3101-1</dd>
+                </div>
+                <div>
+                  <dt>{t("donate.bank_account")}</dt>
+                  <dd>3395-2 — {t("donate.bank_current")}</dd>
+                </div>
+                <div>
+                  <dt>CNPJ</dt>
+                  <dd>{BB_ACCOUNT_CNPJ || t("donate.bank_cnpj_pending")}</dd>
+                </div>
+                <div>
                   <dt>{t("donate.pix_key")}</dt>
-                  <dd>{PIX_KEY_DISPLAY}</dd>
+                  <dd>{PIX_KEY_DISPLAY || t("donate.pix_unavailable")}</dd>
                 </div>
               </dl>
 
               <button
                 className="copy-pix-key"
                 type="button"
-                onClick={() => copyPix(PIX_KEY, "key")}
+                disabled={!PIX_KEY}
+                onClick={() => copyPix(PIX_KEY, "key").catch(() => setError(t("donate.error_copy_pix")))}
               >
                 {copiedPix === "key" ? t("donate.pix_copied") : t("donate.pix_copy_key")}
               </button>
@@ -302,7 +325,11 @@ export default function Donate() {
             </div>
           )}
 
-          <button className="btn btn-primary" onClick={donate} disabled={loading}>
+          {isPix && <>
+            <p className="secure-note">{t("donate.bank_manual_note")}</p>
+            <p className="secure-note">{t("donate.pix_manual_note")}</p>
+          </>}
+          <button className="btn btn-primary" onClick={donate} disabled={loading || (isPix && !pixPayload)}>
             {isPix
               ? copiedPix === "code"
                 ? t("donate.pix_copied")
@@ -319,7 +346,7 @@ export default function Donate() {
               <rect x="4" y="10" width="16" height="11" rx="2" />
               <path d="M8 10V7a4 4 0 0 1 8 0v3" />
             </svg>
-            {isPix ? t("donate.pix_secure_note") : t("donate.secure_note")}
+            {isPix ? t("donate.pix_secure_note") : isBrazil ? t("donate.brazil_secure_note") : t("donate.secure_note")}
           </p>
         </div>
       </div>

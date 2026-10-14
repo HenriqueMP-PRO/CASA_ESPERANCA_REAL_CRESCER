@@ -68,10 +68,10 @@
     "title": "Sua doação transforma vidas",
     "p1": "Cada contribuição vira cesta básica, material de construção, acolhimento e esperança para quem mais precisa, no Brasil e no Congo.",
     "features": {
-      "secure": "Pix direto para a instituição ou cartão processado pelo Stripe",
+      "secure": "Pix direto para o Banco do Brasil; pagamentos internacionais via Stripe",
       "international": "Aceitamos cartões de todo o mundo, em várias moedas",
-      "recurring": "Opção de doação mensal para apoiar continuamente",
-      "receipt": "Você recebe um recibo e um agradecimento por e-mail"
+      "recurring": "Doação mensal disponível no cartão em USD, EUR e GBP",
+      "receipt": "Recibos no provedor de pagamento; agradecimento por e-mail nas doações via Stripe"
     },
     "card_title": "Escolha o valor da sua doação",
     "frequency": "Frequência",
@@ -87,7 +87,7 @@
     "button_empty": "Doar",
     "processing": "Processando...",
     "secure_note": "Doação segura via Stripe — cartão de crédito e débito",
-    "pix_secure_note": "Pix direto para a conta da instituição — confira o nome antes de confirmar",
+    "pix_secure_note": "Pix direto para o Banco do Brasil — confira o recebedor antes de confirmar",
     "pix_qr_alt": "QR Code Pix para doação",
     "pix_receiver": "Recebedor",
     "pix_bank": "Banco",
@@ -98,7 +98,17 @@
     "pix_code_label": "Código Pix copia e cola",
     "error_generic": "Não foi possível iniciar a doação. Tente novamente em instantes.",
     "error_amount": "Informe um valor válido para a doação.",
-    "error_copy_pix": "Não foi possível copiar o código Pix. Copie manualmente a chave ou o código exibido."
+    "error_copy_pix": "Não foi possível copiar o código Pix. Copie manualmente a chave ou o código exibido.",
+    "brazil_note": "Doação única em reais. Escolha Pix ou cartão no checkout do Mercado Pago.",
+    "brazil_unavailable": "Estamos preparando os pagamentos no Brasil. Em breve você poderá doar em reais por Pix ou cartão.",
+    "brazil_secure_note": "Pagamento em reais no ambiente seguro do Mercado Pago",
+    "pix_unavailable": "Chave Pix do Banco do Brasil aguardando confirmação",
+    "bank_agency": "Agência",
+    "bank_account": "Conta",
+    "bank_current": "Conta corrente",
+    "pix_manual_note": "Pix é uma doação única, conferida no extrato pela instituição. Guarde o comprovante do seu banco; não há cobrança mensal nem e-mail automático.",
+    "bank_cnpj_pending": "Aguardando confirmação da instituição",
+    "bank_manual_note": "Você pode fazer Pix pelos dados bancários no aplicativo do seu banco, informando banco, agência, conta corrente e CNPJ do titular. Use esse caminho somente quando o CNPJ estiver confirmado aqui. O número da conta não é uma chave Pix."
   },
   "success": {
     "title": "Muito obrigado!",
@@ -121,5 +131,10 @@
   "footer": {
     "rights": "Todos os direitos reservados.",
     "tagline": "Juntos podemos fazer a diferença."
+  },
+  "review": {
+    "title": "Consulte seu pagamento",
+    "message": "Confira o resultado no Mercado Pago ou no comprovante do seu banco. Voltar ao site não confirma o recebimento; a instituição confere as doações no provedor.",
+    "close": "Fechar"
   }
 }
