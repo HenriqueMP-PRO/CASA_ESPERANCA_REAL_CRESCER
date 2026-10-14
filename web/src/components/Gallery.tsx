@@ -1,21 +1,18 @@
 import { useEffect, useRef, useState, type KeyboardEvent, type TouchEvent } from "react";
 import { useTranslation } from "react-i18next";
-import type { GalleryImage, Lang } from "../content/fallback";
+import type { GalleryImage } from "../content/site";
 import { largestImage } from "../lib/images";
 import ResponsiveImg from "./ResponsiveImg";
 
 const SWIPE_THRESHOLD = 50;
 
 export default function Gallery({ images }: { images: GalleryImage[] }) {
-  const { t, i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage?.slice(0, 2) ?? "pt") as Lang;
+  const { t } = useTranslation();
   const dialogRef = useRef<HTMLDialogElement>(null);
   const touchStartX = useRef<number | null>(null);
   const [current, setCurrent] = useState<number | null>(null);
 
-  const captionOf = (img: GalleryImage) =>
-    img.caption?.[lang] ??
-    (img.captionKey ? t(`gallery.captions.${img.captionKey}`) : t("gallery.title"));
+  const captionOf = (img: GalleryImage) => t(`gallery.captions.${img.captionKey}`);
 
   const total = images.length;
   const show = (index: number) => setCurrent((index + total) % total);

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Stats from "./components/Stats";
@@ -11,16 +10,9 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import DonationStatusModal from "./components/DonationStatusModal";
 import MobileDonateButton from "./components/MobileDonateButton";
-import { fallbackContent, type SiteContent } from "./content/fallback";
-import { loadContent } from "./lib/sanity";
+import { siteContent as content } from "./content/site";
 
 export default function App() {
-  const [content, setContent] = useState<SiteContent>(fallbackContent);
-
-  useEffect(() => {
-    loadContent().then(setContent);
-  }, []);
-
   return (
     <>
       <Header />

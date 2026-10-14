@@ -92,7 +92,7 @@ A separação é por moeda escolhida, não IP, idioma ou nacionalidade do cartã
 1. Confirmar chave Pix/CNPJ da conta BB; preencher `VITE_BB_PIX_KEY` e
    `VITE_BB_ACCOUNT_CNPJ`, e fazer redeploy.
    Conferir banco/titular no app antes de disponibilizar. Não usar a chave antiga.
-2. Manter Vercel com raiz `web`, React/Vite, domínio e CMS Sanity. Manter Stripe,
+2. Manter Vercel com raiz `web`, React/Vite, e domínio. Manter Stripe,
    webhook e Resend para internacionais. Pix direto não exige servidor bancário.
 3. Asaas para cartões: criar/verificar conta da associação, cadastrar o domínio
    do site (exigido para o redirecionamento após o pagamento), configurar

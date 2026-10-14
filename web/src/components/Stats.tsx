@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import type { SiteContent } from "../content/fallback";
+import type { SiteContent } from "../content/site";
 
 export default function Stats({ stats }: { stats: SiteContent["stats"] }) {
   const { t } = useTranslation();

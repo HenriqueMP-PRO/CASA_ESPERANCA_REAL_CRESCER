@@ -1,10 +1,9 @@
 import { useTranslation } from "react-i18next";
 import ResponsiveImg from "./ResponsiveImg";
-import type { Lang, Project } from "../content/fallback";
+import type { Project } from "../content/site";
 
 export default function Projects({ projects }: { projects: Project[] }) {
-  const { t, i18n } = useTranslation();
-  const lang = (i18n.resolvedLanguage?.slice(0, 2) ?? "pt") as Lang;
+  const { t } = useTranslation();
 
   return (
     <section className="section projects" id="projetos">
@@ -14,11 +13,6 @@ export default function Projects({ projects }: { projects: Project[] }) {
         <p className="lead">{t("projects.subtitle")}</p>
         <div className="projects-grid">
           {projects.map((p) => {
-            const title =
-              p.title?.[lang] ?? (p.i18nKey ? t(`projects.items.${p.i18nKey}.title`) : "");
-            const description =
-              p.description?.[lang] ??
-              (p.i18nKey ? t(`projects.items.${p.i18nKey}.description`) : "");
             return (
               <article className="project-card" key={p.id}>
                 <ResponsiveImg
@@ -28,8 +22,8 @@ export default function Projects({ projects }: { projects: Project[] }) {
                   loading="lazy"
                 />
                 <div className="project-body">
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                  <h3>{t(`projects.items.${p.i18nKey}.title`)}</h3>
+                  <p>{t(`projects.items.${p.i18nKey}.description`)}</p>
                 </div>
               </article>
             );

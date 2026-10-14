@@ -1,24 +1,17 @@
-export type Lang = "pt" | "en" | "fr";
-
-export type LocalizedString = Partial<Record<Lang, string>>;
+// Site content that is not translated text. Translations live in src/i18n/*.json.
 
 export interface Project {
   id: string;
-  /** i18n key under projects.items.* used when the CMS has no content */
-  i18nKey?: string;
-  /** Localized title coming from the CMS (overrides i18n) */
-  title?: LocalizedString;
-  description?: LocalizedString;
+  /** Key under projects.items.* in the translation files */
+  i18nKey: string;
   image: string;
 }
 
 export interface GalleryImage {
   src: string;
   tall?: boolean;
-  /** i18n key under gallery.captions.* used when the CMS has no caption */
-  captionKey?: string;
-  /** Localized caption coming from the CMS (overrides i18n) */
-  caption?: LocalizedString;
+  /** Key under gallery.captions.* in the translation files */
+  captionKey: string;
 }
 
 export interface SiteContent {
@@ -39,7 +32,7 @@ export interface SiteContent {
   };
 }
 
-export const fallbackContent: SiteContent = {
+export const siteContent: SiteContent = {
   heroImage: "/images/img001.jpeg",
   aboutImage: "/images/img015.jpeg",
   founderImage: "/images/img005.jpeg",

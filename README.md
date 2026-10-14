@@ -1,13 +1,12 @@
 # Casa Esperança Real Crescer — Landing Page
 
 Landing page responsiva e multilíngue (PT/EN/FR) com doações em BRL via Pix no Banco do Brasil e internacionais via Stripe,
-e-mail de agradecimento via Resend e conteúdo editável via Sanity CMS.
+e-mail de agradecimento via Resend. Conteúdo editado direto no código.
 
 ## Estrutura
 
 ```
 web/      → Frontend React (Vite) + funções serverless em web/api/
-studio/   → Sanity Studio (painel de edição de conteúdo)
 imagens/  → Fotos originais (copiadas para web/public/images)
 texts/    → Textos originais da ONG
 ```
@@ -17,7 +16,7 @@ texts/    → Textos originais da ONG
 Ao adicionar ou trocar fotos em `web/public/images`, rode `npm run images`
 (dentro de `web/`). O script gera versões WebP em vários tamanhos e atualiza
 `web/src/content/image-variants.json`, usado pelo site para servir a foto do
-tamanho certo para cada tela. Fotos vindas do Sanity são redimensionadas pela CDN.
+tamanho certo para cada tela.
 
 ## Rodando localmente
 
@@ -58,8 +57,6 @@ vercel dev
 | `EMAIL_FROM` | Remetente verificado no Resend (ex.: `ONG <contato@seudominio.org>`) |
 | `EMAIL_REPLY_TO` | Opcional; padrão: `Casa Esperança Real Crescer <casaesperancarealcrescer@gmail.com>` |
 | `SITE_URL` | URL pública do site (ex.: `https://www.casaesperancarealcrescer.org`) |
-| `VITE_SANITY_PROJECT_ID` | [sanity.io/manage](https://sanity.io/manage) (opcional) |
-| `VITE_SANITY_DATASET` | normalmente `production` (opcional) |
 
 5. Deploy. Aponte o domínio `casaesperancarealcrescer.org` para a Vercel
    (Settings → Domains).
@@ -147,29 +144,16 @@ Veja a [comparação de provedores e plano de setup](docs/pagamentos-brasil.md).
 Sem o Resend configurado, o doador ainda recebe o recibo padrão do Stripe
 (ative em Stripe → Settings → Emails → "Successful payments").
 
-## Configurando o Sanity (CMS — opcional)
+## Conteúdo
 
-O site funciona sem CMS usando o conteúdo local de `web/src/content/fallback.ts`.
-Para permitir que pessoas não-técnicas editem projetos, fotos e contatos:
-
-1. Crie um projeto gratuito em [sanity.io](https://www.sanity.io).
-2. No `studio/`:
-   ```bash
-   cd studio
-   npm install
-   SANITY_STUDIO_PROJECT_ID=xxxx npm run dev     # painel local
-   SANITY_STUDIO_PROJECT_ID=xxxx npm run deploy  # publica em xxxx.sanity.studio
-   ```
-3. Em [sanity.io/manage](https://sanity.io/manage) → API → CORS Origins, adicione
-   o domínio do site.
-4. Preencha `VITE_SANITY_PROJECT_ID` na Vercel e faça redeploy.
-5. No Studio, crie os documentos "Configurações do Site", "Projeto" e
-   "Imagem da Galeria". O que não for preenchido continua usando o conteúdo local.
+Textos traduzidos ficam em `web/src/i18n/{pt,en,fr}.json`. Fotos, números,
+projetos e contatos ficam em `web/src/content/site.ts`.
 
 ## Idiomas
 
 As traduções ficam em `web/src/i18n/{pt,en,fr}.json`. O idioma é detectado pelo
-navegador e pode ser trocado no menu (persistido em localStorage).
+aparelho; só a escolha manual no menu fica salva (localStorage). O link aceita
+`?lang=pt|en|fr`. Idiomas não suportados caem em inglês.
 
 ## Validação das alterações de pagamento
 
