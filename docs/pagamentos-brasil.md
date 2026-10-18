@@ -8,13 +8,14 @@ PagBank/PagSeguro excluído porque a instituição rompeu relações.
 O PDF bancário fornecido informa agência 3101-1, conta corrente 3395-2 e titular
 CASA DA ESPERANCA REAL CRESCER. Não informa chave Pix. O CNPJ nele diverge do
 CNPJ existente no site; não foi utilizado para gerar QR ou alterar o cadastro
-institucional. Confirmar chave e CNPJ antes da ativação.
+institucional. Em 18/10/2026 o usuário confirmou a chave Pix
+`casaesperancarealcrescer@gmail.com` nessa conta BB.
 
 É possível receber Pix sem chave usando banco, agência, conta, tipo e CNPJ
 correto do titular. Agência/conta não são um tipo de chave Pix; chaves aceitas
 são CPF/CNPJ, e-mail, telefone e aleatória. Para este QR estático é preciso
 uma chave registrada. `VITE_BB_ACCOUNT_CNPJ` permite publicar o CNPJ confirmado
-para Pix manual, independentemente de `VITE_BB_PIX_KEY`.
+para Pix manual, independentemente da chave Pix.
 [BB: Pix por dados bancários](https://www.bb.com.br/site/pro-seu-negocio/pix-pj/),
 [Banco Central: chaves e recebimento sem chave](https://bcb.gov.br/estabilidadefinanceira/pix-sobre).
 
@@ -70,7 +71,8 @@ passa a ser menor que 0,99% perto de R$ 201 por doação.
 ## Estado do código
 
 - BRL inicia no Pix BB e não passa pelo Stripe. A chave antiga foi retirada.
-- `VITE_BB_PIX_KEY` vazia impede QR/cópia até receber uma chave confirmada.
+- Chave Pix confirmada em 18/10/2026: `casaesperancarealcrescer@gmail.com`
+  (e-mail), definida em `PIX_KEY` no `Donate.tsx`. QR e copia e cola ativos.
 - USD/EUR/GBP mantêm Stripe único ou mensal. A API Stripe rejeita BRL.
 - O checkout Asaas (link de pagamento, cartão de crédito) foi preparado em
   endpoint separado, mas permanece desativado (`VITE_BRAZIL_PAYMENTS_ENABLED=false`).
@@ -89,9 +91,9 @@ A separação é por moeda escolhida, não IP, idioma ou nacionalidade do cartã
 
 ## Setup
 
-1. Confirmar chave Pix/CNPJ da conta BB; preencher `VITE_BB_PIX_KEY` e
-   `VITE_BB_ACCOUNT_CNPJ`, e fazer redeploy.
-   Conferir banco/titular no app antes de disponibilizar. Não usar a chave antiga.
+1. Chave Pix já definida no código. Confirmar o CNPJ do titular da conta BB e
+   preencher `VITE_BB_ACCOUNT_CNPJ`, se quiser exibi-lo; fazer redeploy.
+   Conferir banco/titular no app. Não usar a chave antiga.
 2. Manter Vercel com raiz `web`, React/Vite, e domínio. Manter Stripe,
    webhook e Resend para internacionais. Pix direto não exige servidor bancário.
 3. Asaas para cartões: criar/verificar conta da associação, cadastrar o domínio

@@ -7,7 +7,8 @@ type Currency = "brl" | "usd" | "eur" | "gbp";
 type Frequency = "once" | "monthly";
 type PaymentMethod = "pix" | "card";
 
-const PIX_KEY = (import.meta.env.VITE_BB_PIX_KEY ?? "").trim();
+// Email key registered to the Banco do Brasil account (confirmed 2026-10-18).
+const PIX_KEY = "casaesperancarealcrescer@gmail.com";
 const BB_ACCOUNT_CNPJ = (import.meta.env.VITE_BB_ACCOUNT_CNPJ ?? "").trim();
 const BRAZIL_CARD_ENABLED = import.meta.env.VITE_BRAZIL_PAYMENTS_ENABLED === "true";
 const PIX_RECEIVER = "CASA DA ESPERANCA REAL CRESCER";

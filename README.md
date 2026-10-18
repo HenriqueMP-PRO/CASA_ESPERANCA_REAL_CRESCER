@@ -47,7 +47,6 @@ vercel dev
 | Variável | Onde obter |
 |---|---|
 | `VITE_BB_ACCOUNT_CNPJ` | CNPJ confirmado do titular para Pix manual por dados bancários |
-| `VITE_BB_PIX_KEY` | Chave Pix confirmada da conta BB; vazia até confirmação |
 | `VITE_BRAZIL_PAYMENTS_ENABLED` | `true` somente após validar o Asaas; padrão desativado |
 | `ASAAS_API_KEY` | Chave de API do Asaas (Integrações → Chaves de API); só no servidor |
 | `ASAAS_ENVIRONMENT` | `production` para cobranças reais; qualquer outro valor usa o sandbox |
@@ -85,21 +84,20 @@ O Banco do Brasil é o banco indicado pela instituição: agência 3101-1, conta
 corrente 3395-2, titular CASA DA ESPERANCA REAL CRESCER. A chave Pix anterior,
 associada ao PagSeguro, foi retirada. PagBank está fora do escopo.
 
-1. Confirme a chave Pix cadastrada nessa conta e configure `VITE_BB_PIX_KEY`.
-   O PDF fornecido não contém chave Pix e seu CNPJ diverge do cadastro do site;
-   não se presume que CNPJ, e-mail ou número da conta sejam uma chave válida.
-2. Para Pix manual por dados bancários, confirmar e configurar
-   `VITE_BB_ACCOUNT_CNPJ`. Agência/conta não são uma chave Pix.
-3. Faça redeploy, pois as variáveis públicas são incorporadas no build.
-4. Confira o QR Code no aplicativo bancário e valide banco/titular antes de
-   disponibilizar o recebimento. Com a variável vazia, não há QR Code ou cópia.
+A chave Pix é o e-mail `casaesperancarealcrescer@gmail.com`, confirmada em
+18/10/2026 como cadastrada nessa conta BB. Ela fica em `PIX_KEY`, em
+`web/src/components/Donate.tsx`; para trocá-la, edite ali e faça redeploy.
+
+1. Para mostrar também o CNPJ do titular (Pix manual por dados bancários),
+   configure `VITE_BB_ACCOUNT_CNPJ`. Agência/conta não são uma chave Pix.
+2. Confira o QR Code no aplicativo bancário e valide banco/titular a cada
+   troca de chave.
 
 O Pix é único e conferido manualmente no extrato; não há cobrança mensal,
 webhook ou e-mail automático. Não precisa de credenciais Stripe ou Asaas.
 
-Sem `VITE_BB_PIX_KEY` nem `VITE_BB_ACCOUNT_CNPJ` (e com o Asaas desativado), quem
-escolhe BRL vê um aviso de "em breve" com botão para o WhatsApp da ONG. Só com o
-CNPJ, o site mostra agência/conta com botões de copiar para Pix por dados bancários.
+O site mostra o QR Code, o código copia e cola e a chave, agência e conta com
+botões de copiar.
 Não se promete isenção de tarifa PJ do BB sem verificar o contrato da conta.
 
 ### Cartão brasileiro via Asaas — preparado, desativado
