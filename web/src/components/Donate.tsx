@@ -1,17 +1,21 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import * as QRCode from "qrcode";
+import { siteContent } from "../content/site";
 import { buildPixPayload } from "../lib/pix";
 
 type Currency = "brl" | "usd" | "eur" | "gbp";
 type Frequency = "once" | "monthly";
 type PaymentMethod = "pix" | "card";
 
-// Email key registered to the Banco do Brasil account (confirmed 2026-10-18).
+// Email key and holder confirmed in a bank app against the Banco do Brasil
+// account on 2026-10-18; the holder CNPJ matches the institution's.
 const PIX_KEY = "casaesperancarealcrescer@gmail.com";
-const BB_ACCOUNT_CNPJ = (import.meta.env.VITE_BB_ACCOUNT_CNPJ ?? "").trim();
+const BB_ACCOUNT_CNPJ = siteContent.contact.cnpj;
 const BRAZIL_CARD_ENABLED = import.meta.env.VITE_BRAZIL_PAYMENTS_ENABLED === "true";
-const PIX_RECEIVER = "CASA DA ESPERANCA REAL CRESCER";
+const PIX_RECEIVER = "CASA ESPERANCA REAL - CRESCER";
+// The Pix payload caps the name at 25 characters; banks show the registered one.
+const PIX_QR_NAME = "CASA ESPERANCA REAL";
 const PIX_BANK = "Banco do Brasil (001)";
 const PIX_CITY = "Rio de Janeiro";
 const BB_AGENCY = "3101-1";
@@ -125,7 +129,7 @@ export default function Donate({ whatsapp }: { whatsapp: string }) {
 
     return buildPixPayload({
       key: PIX_KEY,
-      receiverName: PIX_RECEIVER,
+      receiverName: PIX_QR_NAME,
       city: PIX_CITY,
       amount,
     });

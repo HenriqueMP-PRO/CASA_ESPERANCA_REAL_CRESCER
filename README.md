@@ -46,7 +46,6 @@ vercel dev
 
 | Variável | Onde obter |
 |---|---|
-| `VITE_BB_ACCOUNT_CNPJ` | CNPJ confirmado do titular para Pix manual por dados bancários |
 | `VITE_BRAZIL_PAYMENTS_ENABLED` | `true` somente após validar o Asaas; padrão desativado |
 | `ASAAS_API_KEY` | Chave de API do Asaas (Integrações → Chaves de API); só no servidor |
 | `ASAAS_ENVIRONMENT` | `production` para cobranças reais; qualquer outro valor usa o sandbox |
@@ -81,23 +80,20 @@ de teste `4242 4242 4242 4242` para validar o fluxo completo.
 ## Configurando o Pix no Banco do Brasil
 
 O Banco do Brasil é o banco indicado pela instituição: agência 3101-1, conta
-corrente 3395-2, titular CASA DA ESPERANCA REAL CRESCER. A chave Pix anterior,
+corrente 3395-2, titular CASA ESPERANCA REAL - CRESCER, CNPJ 09.563.258/0001-70. A chave Pix anterior,
 associada ao PagSeguro, foi retirada. PagBank está fora do escopo.
 
-A chave Pix é o e-mail `casaesperancarealcrescer@gmail.com`, confirmada em
-18/10/2026 como cadastrada nessa conta BB. Ela fica em `PIX_KEY`, em
-`web/src/components/Donate.tsx`; para trocá-la, edite ali e faça redeploy.
-
-1. Para mostrar também o CNPJ do titular (Pix manual por dados bancários),
-   configure `VITE_BB_ACCOUNT_CNPJ`. Agência/conta não são uma chave Pix.
-2. Confira o QR Code no aplicativo bancário e valide banco/titular a cada
-   troca de chave.
+A chave Pix é o e-mail `casaesperancarealcrescer@gmail.com`. Em 18/10/2026, um
+QR Code de teste lido no app de um banco mostrou esse titular, esse CNPJ e o
+Banco do Brasil. Chave, titular e dados bancários ficam no topo de
+`web/src/components/Donate.tsx`; o CNPJ vem de `web/src/content/site.ts`.
+Ao trocar algum deles, faça redeploy e leia o QR Code de novo num app bancário.
 
 O Pix é único e conferido manualmente no extrato; não há cobrança mensal,
 webhook ou e-mail automático. Não precisa de credenciais Stripe ou Asaas.
 
-O site mostra o QR Code, o código copia e cola e a chave, agência e conta com
-botões de copiar.
+O site mostra o QR Code, o código copia e cola e a chave, agência, conta e CNPJ
+com botões de copiar.
 Não se promete isenção de tarifa PJ do BB sem verificar o contrato da conta.
 
 ### Cartão brasileiro via Asaas — preparado, desativado
