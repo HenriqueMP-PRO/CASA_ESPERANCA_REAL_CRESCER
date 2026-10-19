@@ -835,6 +835,15 @@ h2 {
   color: var(--ink);
 }
 
+.pix-note a {
+  color: var(--green-800);
+  font-weight: 700;
+}
+
+.pix-details-folded {
+  margin-top: 0.75rem;
+}
+
 .pix-code-details summary {
   cursor: pointer;
   font-size: 0.85rem;

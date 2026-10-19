@@ -214,6 +214,31 @@ export default function Donate({ whatsapp }: { whatsapp: string }) {
     }
   };
 
+  const bankRows = (
+    <>
+      <CopyRow
+        label={t("donate.bank_agency")}
+        value={BB_AGENCY}
+        copied={copied === "agency"}
+        onCopy={() => copy(BB_AGENCY, "agency")}
+      />
+      <CopyRow
+        label={t("donate.bank_account")}
+        value={BB_ACCOUNT}
+        copied={copied === "account"}
+        onCopy={() => copy(BB_ACCOUNT, "account")}
+      />
+      {BB_ACCOUNT_CNPJ && (
+        <CopyRow
+          label="CNPJ"
+          value={BB_ACCOUNT_CNPJ}
+          copied={copied === "cnpj"}
+          onCopy={() => copy(BB_ACCOUNT_CNPJ, "cnpj")}
+        />
+      )}
+    </>
+  );
+
   const brlUnavailable = isBrazil && !BRL_AVAILABLE;
   // Manual Pix (no key): the donor types the amount in their bank app.
   const showAmount = !brlUnavailable && !(isPix && !PIX_KEY);
@@ -391,29 +416,30 @@ export default function Donate({ whatsapp }: { whatsapp: string }) {
                     onCopy={() => copy(PIX_KEY, "key")}
                   />
                 )}
-                <CopyRow
-                  label={t("donate.bank_agency")}
-                  value={BB_AGENCY}
-                  copied={copied === "agency"}
-                  onCopy={() => copy(BB_AGENCY, "agency")}
-                />
-                <CopyRow
-                  label={t("donate.bank_account")}
-                  value={BB_ACCOUNT}
-                  copied={copied === "account"}
-                  onCopy={() => copy(BB_ACCOUNT, "account")}
-                />
-                {BB_ACCOUNT_CNPJ && (
-                  <CopyRow
-                    label="CNPJ"
-                    value={BB_ACCOUNT_CNPJ}
-                    copied={copied === "cnpj"}
-                    onCopy={() => copy(BB_ACCOUNT_CNPJ, "cnpj")}
-                  />
-                )}
               </dl>
 
-              <p className="pix-note">{t("donate.pix_manual_note")}</p>
+              {/* Only needed for Pix by branch and account, so it stays folded when there is a key. */}
+              {PIX_KEY ? (
+                <details className="pix-code-details">
+                  <summary>{t("donate.bank_details_label")}</summary>
+                  <dl className="pix-details pix-details-folded">{bankRows}</dl>
+                </details>
+              ) : (
+                <dl className="pix-details">{bankRows}</dl>
+              )}
+
+              {whatsapp && (
+                <p className="pix-note">
+                  {t("donate.pix_receipt_prompt")}{" "}
+                  <a
+                    href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(t("donate.pix_receipt_message"))}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t("donate.pix_receipt_link")}
+                  </a>
+                </p>
+              )}
             </div>
           )}
 
